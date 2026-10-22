@@ -1546,25 +1546,26 @@ firstName <-
 
 # 3. Create a LOGICAL value.
 # Imagine this variable answers the question:
-# "Did this student score at least 90?"
-scoredAtLeast90 <- quizScore >= 90
+# "Did this student score higher than 80?"
+scoredGreaterThan80 <- quizScore > 80
 
 
 # Print the TRUE/FALSE result.
 
 
-
-# 4. Use that logical value in a simple decision.
-# If scoredAtLeast90 is TRUE, R will print your name.
-if (scoredAtLeast90) {
-  print(firstName)
-}
+# Your TA will also review how to determine if 
+# a score is exactly 80! Feel free to try it yourself first.
 
 
-# 5. OPTIONAL EXPERIMENT:
-# What happens if you try arithmetic with text?
-# Remove the # below, run the code, and read the error message.
-# print(firstName + 5)</textarea>
+# 4. Can you do arithmetic with text? Try it and see what happens.
+# Try to add 5 to your first name and print the result. You should see an error message.
+
+
+# 5. OPTIONAL EXPERIMENT: Use a logical value in a simple decision.
+# If scoredGreaterThan80 is TRUE, R will print your name.
+if (scoredGreaterThan80) {
+print(firstName)
+}</textarea>
 
   <div class="r-output-wrap">
     <div class="r-output-label">Output</div>
@@ -1582,8 +1583,8 @@ if (scoredAtLeast90) {
       </div>
 
       <p>
-        You have already used <strong>functions</strong> earlier in the course. A function takes one or more
-        <strong>inputs</strong>, performs an algorithm, and produces an <strong>output</strong>.
+        You've already used <strong>functions</strong> earlier in the course. A function takes one or more
+        inputs, performs an algorithm, and produces an output.
         R comes with many useful pre-written functions for basic math and statistics, including
         <code>sum()</code>, <code>mean()</code>, <code>median()</code>, <code>min()</code>, <code>max()</code>, and <code>summary()</code>.
       </p>
@@ -1625,7 +1626,10 @@ if (scoredAtLeast90) {
           <span class="r-cell-label">Lemonade sales: functions with a vector</span>
           <button class="r-run" type="button" disabled>Run</button>
         </div>
-        <textarea class="r-editor" spellcheck="false">lemonadeSales <- c(30, 42, 35, 50, 46, 38, 55)
+        <textarea class="r-editor" spellcheck="false">
+# Create a vector of lemonade sales for a week.
+# (You use c() to combine multiple values into a vector.)
+lemonadeSales <- c(30, 42, 35, 50, 46, 38, 55)
 
 # Total number of lemonades sold
 sum(lemonadeSales)
@@ -1697,7 +1701,7 @@ print(totalClassHours)
       </div>
     
       <div class="exploration">
-        <h3>Final exploration: Phone time vs. class time</h3>
+        <h3>Exploration: Phone time vs. Class time</h3>
         <p>
           You have now made two different semester-scale estimates:
           one for your <strong>phone screen time</strong> and one for the amount of time you spend

@@ -1127,47 +1127,52 @@ code{background:#eef3f9;padding:1px 4px;border-radius:4px;}
 
 .tilde-carousel{max-width:940px;margin:22px auto 20px;}
 .tilde-carousel-intro{color:#354252;margin:14px 0 18px;}
-</style></head><body><main class="wrap"><header class="hero" id="top"><span class="eyebrow">R Lab 2</span><h1>Exploring a Real Dataset</h1><p class="lede">On Day 1 you worked with individual numbers and vectors. Today you will investigate thousands of real scooter observations from Bloomington—looking for patterns and deciding which data to trust.</p><div class="r-status" id="r-status"><span class="r-dot"></span><span id="r-status-text">Starting R and loading the scooter data…</span></div></header>
+</style></head><body><main class="wrap"><header class="hero" id="top"><span class="eyebrow">R Lab 2</span><h1>Exploring a Real Dataset</h1><p class="lede">On Day 1 you worked with individual numbers and vectors. Today you'll investigate thousands of real scooter observations from Bloomington.</p><div class="r-status" id="r-status"><span class="r-dot"></span><span id="r-status-text">Starting R and loading the scooter data…</span></div></header>
 <div class="card">
 <h2>How this lab works</h2>
-<p>Follow your TA through the same three steps as Day 1: <strong>Watch</strong> a demonstration, <strong>Try</strong> the next problem, then <strong>Check</strong> your results together. All code boxes share one R session, so objects made in an earlier box are available in later boxes.</p>
-<p><strong>Today’s question:</strong> What can scooter data tell us about how scooters are used in Bloomington—and why should we check the data before drawing conclusions?</p>
-<p>One row is one scooter provider on one day—not one individual scooter trip. We will analyze daily totals and averages.</p><p><strong>First, open the full dataset:</strong> <a download="scooter_activity_daily.csv" href="assets/scooter_activity_daily.csv">Download the scooter data (CSV)</a>. Open it in a spreadsheet program to see its rows and columns outside R. You do not need to edit it or upload it.</p>
+<p>Follow your TA through the same three steps as Day 1: <strong>Watch</strong> a demonstration, <strong>Try</strong> the next problem, then <strong>Check</strong> your results together. All code boxes share one R session, so variables made in an earlier box are available in later boxes.</p>
+<p><strong>Today’s questions:</strong> What can scooter data tell us about how scooters are used in Bloomington? Why should we check the data before drawing conclusions?</p>
+<p>In this real dataset, one row is <em>one scooter provider</em> on <em>one day</em>, not one individual scooter trip. We will analyze daily totals and averages.</p>
 <div class="figure scooter-figure">
 <img alt="A person riding a green scooter on the Indiana University campus in Bloomington." src="assets/bloomington_scooter_photo.png"/>
 <div class="caption">Source image from the <a href="https://www.heraldtimesonline.com/story/news/local/2023/04/18/bloomington-plans-changes-to-policies-for-lime-bird-veo-scooters/70069927007/" rel="noopener" target="_blank">Herald-Times article</a>.</div>
 </div>
-<div class="figure dataframe-figure">
-<img alt="Diagram showing that a variable in R can store a number, a word, a logical value, a vector, or a whole data frame." src="assets/data_frame_variable.svg"/>
-<div class="caption">Just like a variable can hold one number or one vector, it can also hold a whole table. In this lab, that table is called <code>scooterData</code>.</div>
-</div>
-<div class="figure cheatsheet-figure">
-<img alt="Cheatsheet showing a common R pattern: function name, then data, then a function-specific argument." src="assets/function_pattern.svg"/>
-<div class="caption">Our grouped-summary and graph helpers use a consistent pattern: the table, the grouping or x column, and the numeric y column.</div>
-</div>
-</div>
-<section id="inspect"><div class="section-marker"><div class="part">Part 1</div><h2>Meet the scooter dataset</h2></div><div class="phase watch">Watch</div><p>A <strong>data frame</strong> is a table of data stored in a variable. In a <strong>tidy</strong> data frame, each row is one observation, each column is one variable, and each cell contains one value. In our data, one row is one scooter provider on one day. Printing <code>scooterData</code> would fill the screen with thousands of rows. Instead, <code>head()</code> shows the first six rows, and <code>dim()</code> tells us how many rows and columns it has.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: look at the table</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Printing scooterData would show thousands of rows.
+
+<section id="inspect"><div class="section-marker"><div class="part">Part 1</div>
+  <h2>Part 0: Meet the scooter dataset</h2></div>
+  <div class="card"> <p><strong>First, open the full dataset:</strong> <a download="scooter_activity_daily.csv"
+      href="assets/scooter_activity_daily.csv">Download the scooter data (CSV)</a>. Open it in a spreadsheet program to
+    see its rows and columns outside R. You do not need to edit it or upload it.</p></div>
+    <div class="figure dataframe-figure">
+      <div class="caption">Just like a variable can hold one number or one vector, it can also hold a whole table. In this
+        lab, that table is called <code>scooterData</code>. We have already loaded scooterData into this environment for
+        you!</div>
+      <img
+        alt="Diagram showing that a variable in R can store a number, a word, a logical value, a vector, or a whole data frame."
+        src="assets/data_frame_variable.svg" />
+    </div>
+  <div class="phase watch">Watch</div><p>A <strong>data frame</strong> is a table of data stored in a variable. In a <strong>tidy</strong> data frame, each row is one observation, each column is one variable, and each cell contains one value. In our data, one row is one scooter provider on one day. Printing <code>scooterData</code> would fill the screen with thousands of rows. Instead, <code>head()</code> shows the first six rows, and <code>dim()</code> tells us how many rows and columns it has.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: look at the table</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Printing scooterData would show thousands of rows.
 # head() shows just the first six.
-cat("First six rows:\n")
+print("First six rows:")
 print(head(scooterData))
 
 # dim() reports the number of rows and columns.
-cat("\nDataset dimensions (rows, then columns):\n")
+print("Dataset dimensions (rows, then columns):")
 print(dim(scooterData))
 
-cat("\nColumn names:\n")
-print(names(scooterData))</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase check">Check</div><p>Look at the first six rows together. Which variable identifies the scooter company? Which variable gives the date? Why is <code>trips</code> a daily total rather than a single-trip measurement?</p></section><section id="columns"><div class="section-marker"><div class="part">Part 2</div><h2>Work with columns</h2></div><div class="phase watch">Watch</div><div class="figure" style="max-width:860px;margin:18px auto;"><img alt="Diagram highlighting the trips column of scooterData and selecting it using scooterData$trips." src="assets/column_from_dataframe.svg"/></div><p>We can use the same functions from Day 1—such as <code>mean()</code>, <code>median()</code>, and <code>sum()</code>—with a dataset. But it does not make sense to calculate the mean of a whole table that mixes brand names, dates, and distances. Instead, we usually work with <strong>one variable (one column) at a time</strong>. The dollar sign (<code>$</code>) selects a column. For example, <code>scooterData$trips</code> is a vector, so we can use the same functions on it that we used on vectors on Day 1.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: one column at a time</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Select one column without printing all 5,055 values.
+print("Column names:")
+print(names(scooterData))</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase check">Check</div><p>Look at the first six rows together. Which variable identifies the scooter company? Which variable gives the date? Why is <code>trips</code> a daily total rather than a single-trip measurement?</p></section><section id="columns"><div class="section-marker"><div class="part">Part 2</div><h2>Part 1: Work with columns</h2></div><div class="phase watch">Watch</div><div class="figure" style="max-width:860px;margin:18px auto;"><img alt="Diagram highlighting the trips column of scooterData and selecting it using scooterData$trips." src="assets/column_from_dataframe.svg"/></div><p>We can use the same functions from Day 1—such as <code>mean()</code>, <code>median()</code>, and <code>sum()</code>—with a dataset. But it does not make sense to calculate the mean of a whole table that mixes brand names, dates, and distances. Instead, we usually work with one variable (one column) at a time. The dollar sign (<code>$</code>) selects a column. For example, <code>scooterData$trips</code> is a vector, so we can use the same functions on it that we used on vectors on Day 1.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: one column at a time</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Select one column without printing all 5,055 values.
 trips &lt;- scooterData$trips
-cat("First six trip counts:\n")
+print("First six trip counts:")
 print(head(trips))
 
-cat("\nMean trips per provider-day:\n")
+print("Mean trips per provider-day:")
 print(mean(trips))
 
-cat("\nMedian trips per provider-day:\n")
+print("Median trips per provider-day:")
 print(median(trips))
 
-cat("\nLargest daily trip count:\n")
+print("Largest daily trip count:")
 print(max(trips))</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase try">Try</div><p>Explore <code>avg_distance</code>, which records the average trip distance for each provider-day. Calculate its mean, median, and maximum. Do any of the values seem surprising?</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: summarize distance</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Use the avg_distance column.
 # Show the first few values.
 
@@ -1179,8 +1184,15 @@ print(max(trips))</textarea><div class="r-output-wrap"><div class="r-output-labe
 
 
 # Find the maximum average distance.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer2">What seems unusual about the average-distance values?</label><textarea class="student-answer" data-question="What seems unusual about average distance?" id="answer2" placeholder="Write your observation here…"></textarea><div class="phase check">Check</div><p>Compare the mean, median, and maximum. What happens to an average when a few observations are extremely large?</p></section><section id="quality"><div class="section-marker"><div class="part">Part 3</div><h2>Find suspicious observations</h2></div><div class="phase watch">Watch</div><p>Real datasets sometimes include measurements that are implausible or incorrectly recorded. <strong>Filtering</strong> means keeping only the rows that meet a rule. Here, we will investigate provider-days with average trip distances above 20 miles and build a new table that keeps rows at or below 20 miles. This is a <em>practice threshold</em>, not proof that every value above 20 is an error. The original <code>scooterData</code> will stay unchanged.</p><p><code>filter_rows(data, condition)</code> is an I101 helper: it makes a new table containing only rows where the condition is true. In the histogram below, <code>breaks = seq(0, 20, by = 1)</code> makes one-mile buckets, so the common distances are easier to see. Values above 20 miles have already been counted; they are intentionally excluded from this particular graph.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: inspect, filter, then graph</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Step 1: How many provider-days exceed 20 miles?
-cat("Provider-days above 20 miles:\n")
+</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer2">What seems unusual about the average-distance values?</label><textarea class="student-answer" data-question="What seems unusual about average distance?" id="answer2" placeholder="Write your observation here…"></textarea><div class="phase check">Check</div><p>Compare the mean, median, and maximum. What happens to an average when a few observations are extremely large?</p></section>
+<section id="quality">
+  <div class="section-marker">
+    <div class="part">Part 3</div>
+    <h2>Part 3: Find suspicious observations</h2></div>
+    <div class="phase watch">Watch</div>
+    <p>Real datasets sometimes include measurements that are implausible or incorrectly recorded. <strong>Filtering</strong> means keeping only the rows that meet a rule. Here, we will investigate provider-days with average trip distances above 20 miles and build a new table that keeps rows at or below 20 miles. This is a <em>practice threshold</em>, not proof that every value above 20 is an error. The original <code>scooterData</code> will stay unchanged.</p><p><code>filter(data, condition)</code> is a function from a popular library (package) in R called <code>dplyr</code>: it makes a new table containing only rows where the condition is true.</p>
+    <p></p>In the histogram below, <code>breaks = seq(0, 20, by = 1)</code> makes one-mile buckets, so the common distances are easier to see. Values above 20 miles have already been counted; they are intentionally excluded from this particular graph.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: inspect, filter, then graph</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Step 1: How many provider-days exceed 20 miles?
+print("Provider-days above 20 miles:")
 print(sum(scooterData$avg_distance &gt; 20))
 
 # Step 2: filter_rows() keeps rows that meet a condition.
@@ -1188,9 +1200,9 @@ print(sum(scooterData$avg_distance &gt; 20))
 # Keep rows with an average distance of 20 miles or less.
 cleanScooters &lt;- filter_rows(scooterData, avg_distance &lt;= 20)
 
-cat("\nOriginal number of rows:\n")
+print("Original number of rows:")
 print(nrow(scooterData))
-cat("\nFiltered number of rows:\n")
+print("Filtered number of rows:")
 print(nrow(cleanScooters))
 
 # Step 3: show the typical values using one-mile bins.
@@ -1210,7 +1222,21 @@ hist(cleanScooters$avg_distance,
 
 
 # Find the median of avg_distance.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer3">How did filtering change the mean and the median? Why do you think one changed more than the other?</label><textarea class="student-answer" data-question="How did filtering change the mean and the median?" id="answer3" placeholder="Write your answer here…"></textarea><div class="phase check">Check</div><p>Your mean should change much more than your median. That is a clue that a few extreme values were pulling the average upward.</p></section><section id="groups"><div class="section-marker"><div class="part">Part 4</div><h2>Compare scooter companies</h2></div><div class="figure" style="max-width:850px;margin:22px auto;"><img alt="Bar chart labeling horizontal x axis as movie title and vertical y axis as box office sales." src="assets/xy_axes.svg"/><div class="caption">For our helpers: <code>data</code> tells R which table, <code>x</code> tells R what we compare, and <code>y</code> tells R which value to summarize or graph.</div></div>
+</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer3">How did filtering change the mean and the median? Why do you think one changed more than the other?</label><textarea class="student-answer" data-question="How did filtering change the mean and the median?" id="answer3" placeholder="Write your answer here…"></textarea><div class="phase check">Check</div><p>Your mean should change much more than your median. That is a clue that a few extreme values were pulling the average upward.</p></section>
+<section id="groups">
+  <div class="section-marker">
+    <div class="part">Part 4</div>
+    <h2>Part 4: Compare scooter companies</h2></div>
+    <div class="figure cheatsheet-figure">
+      <img alt="Cheatsheet showing a common R pattern: function name, then data, then a function-specific argument."
+        src="assets/function_pattern.svg" />
+      <div class="caption">Our grouped-summary and graph helpers use a consistent pattern: the table, the grouping or x
+        column, and the numeric y column.</div>
+    </div>
+    </div>
+    <div class="caption">For our helpers: <code>data</code> tells R which table, <code>x</code> tells R what we compare, and
+      <code>y</code> tells R which value to summarize or graph.</div>
+    <div class="figure" style="max-width:850px;margin:22px auto;"><img alt="Bar chart labeling horizontal x axis as movie title and vertical y axis as box office sales." src="assets/xy_axes.svg"/></div>
 <div class="phase watch">Watch</div><p>To compare companies, we want a separate summary for each provider. Our helper functions use three inputs: <code>data</code> (the table), <code>x</code> (the groups), and <code>y</code> (the numeric values). We use the same <code>x</code> and <code>y</code> idea when making a graph.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: trips by provider</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Total trips by scooter provider.
 providerTrips &lt;- total_by(cleanScooters, x = provider_name, y = trips)
 print(providerTrips)
@@ -1223,7 +1249,7 @@ print(providerDistances)</textarea><div class="r-output-wrap"><div class="r-outp
 
 
 # Print the new summary table.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer4">Which provider has the highest average daily average duration? What does that number describe?</label><textarea class="student-answer" data-question="Which provider has the highest average daily average duration?" id="answer4" placeholder="Write your answer here…"></textarea><div class="phase check">Check</div><p>Check the distinction between <code>total_by()</code> and <code>average_by()</code>. Why would summing a column of daily averages answer a different question?</p></section><section id="graphs"><div class="section-marker"><div class="part">Part 5</div><h2>Show the patterns</h2></div><div class="phase watch">Watch</div><p>A table gives exact values. A graph makes comparisons easier to see. The graph helpers also take <code>data</code>, <code>x</code>, and <code>y</code>, matching the axes in the movie example.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: bar graph of provider trip totals</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Bar graph: company on x, total trips on y.
+</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer4">Which provider has the highest average daily average duration? What does that number describe?</label><textarea class="student-answer" data-question="Which provider has the highest average daily average duration?" id="answer4" placeholder="Write your answer here…"></textarea><div class="phase check">Check</div><p>Check the distinction between <code>total_by()</code> and <code>average_by()</code>. Why would summing a column of daily averages answer a different question?</p></section><section id="graphs"><div class="section-marker"><div class="part">Part 5</div><h2>Part 5: Show the patterns</h2></div><div class="phase watch">Watch</div><p>A table gives exact values. A graph makes comparisons easier to see. The graph helpers also take <code>data</code>, <code>x</code>, and <code>y</code>, matching the axes in the movie example.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: bar graph of provider trip totals</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Bar graph: company on x, total trips on y.
 bar_graph(providerTrips, x = provider_name, y = trips)
 
 # Scatter plot: distance on x, duration on y.
