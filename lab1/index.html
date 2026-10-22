@@ -1131,7 +1131,6 @@
       <div class="section-marker">
         <div class="part">Introduction</div>
         <h2>Introduction: What is R?</h2>
-        <p>R is a programming language designed for data analysis, statistical computing, and graphics.</p>
       </div>
 
       <div class="figure">
@@ -1148,7 +1147,7 @@
     <section id="workflow">
       <div class="section-marker">
         <div class="part">Orientation</div>
-        <h2>How this lab works</h2>
+        <h2>Part 0: Orientation to today's lab</h2>
         
       </div>
 
@@ -1173,13 +1172,12 @@
       <div class="section-marker">
         <div class="part">Part 1</div>
         <h2>Part 1: R as a calculator</h2>
-        <p>Start by using R to do arithmetic.</p>
       </div>
 
       <div class="small-icon calculator-hero">
         <img src="assets/calculator.png" alt="Cute calculator illustration." />
         <div>
-          <p>R can evaluate mathematical expressions just like a calculator. Watch the first example, then try the next one yourself.</p>
+          <p>Let's start simple. R can evaluate mathematical expressions just like a calculator. Some basic operations are addition (+), subtraction (-), multiplication (*), division (/), and exponents (^). Also, notice that you can resize your R windows as needed by using the control on the bottom right of the R window. Watch the first example, then try the next one yourself.</p>
         </div>
       </div>
 
@@ -1228,8 +1226,7 @@
     <section id="comments">
       <div class="section-marker">
         <div class="part">Part 2</div>
-        <h2>Part 2: Comments</h2>
-        <p>Comments are notes for people. R ignores them when it runs your code.</p>
+        <h2>Part 2: Adding comments to your code</h2>
       </div>
 
       <div class="figure">
@@ -1282,10 +1279,10 @@
       <div class="section-marker">
         <div class="part">Part 3</div>
         <h2>Part 3: Variables</h2>
-        <p>A variable is a container and label for information.</p>
       </div>
 
       <div class="variable-demo" id="variable-demo" data-step="1">
+        <p>A variable is a container and label for information.</p>
         <div class="variable-demo-stage" aria-live="polite">
           <div class="variable-demo-canvas" aria-hidden="true">
             <div class="vd-label">screenTime</div>
@@ -1328,10 +1325,12 @@
           <button class="r-run" type="button" disabled>Run</button>
         </div>
         <textarea class="r-editor" spellcheck="false">lemonadesSold <- 42
+# First, let's create variables for each number in our example
 profitPerLemonade <- 1.50
 cookiesSold <- 18
 profitPerCookie <- 1.25
 
+# Now we can do arithmetic on those numbers without needing to remember them ourselves!
 lemonadeProfit <- lemonadesSold * profitPerLemonade
 cookieProfit <- cookiesSold * profitPerCookie
 totalProfit <- lemonadeProfit + cookieProfit
@@ -1402,17 +1401,17 @@ print(totalProfit)</textarea>
         </div>
         <textarea class="r-editor" spellcheck="false"># Choose ONE approach below.
 
-# OPTION 1: If your phone gives you an average DAILY screen time in hours:
-dailyScreenTime <- 
-
-semesterScreenTime <- dailyScreenTime * 7 * 16
-semesterScreenTime
+# Step 1: Create a variable called either dailyScreenTime OR weeklyScreenTime
+# to store the your screentime per day or per week.
 
 
-# OPTION 2: If your phone gives you a WEEKLY total in hours:
-# weeklyScreenTime <- 
-# semesterScreenTime <- weeklyScreenTime * 16
-# semesterScreenTime</textarea>
+# Step 2: Create a new variable called semesterScreenTime that is calculated using the 
+# dailyScreenTime OR weeklyScreenTime variable you just meade
+# (Refer to the math expression above for help.)
+semesterScreenTime <- 
+
+# Step 3: Print your semesterScreenTime
+semesterScreenTime</textarea>
         <div class="r-output-wrap">
           <div class="r-output-label">Output</div>
           <pre class="r-output">R is still loading…</pre>
@@ -1429,8 +1428,150 @@ semesterScreenTime
 
       <div class="figure data-types-figure">
         <img src="assets/data_types.png" alt="Three-column data types visual showing number, text, and logical values." />
-        
       </div>
+
+      <p>
+  A value's <strong>data type</strong> tells R what kind of information it is — and that affects
+  what R can do with it.
+</p>
+
+<p>
+  For example, R can <code>print()</code> numbers, text, and logical values. But some operations
+  only make sense for certain types. We can do arithmetic with numbers, but trying to add a number
+  to a person's name does not make sense.
+</p>
+
+<div class="callout">
+  <strong>What about logical values?</strong><br>
+  Logical values are <code>TRUE</code> or <code>FALSE</code>. R can actually use them in arithmetic:
+  when necessary, <code>TRUE</code> acts like <code>1</code> and <code>FALSE</code> acts like
+  <code>0</code>. That can be useful, but their more important job is helping R make decisions.
+</div>
+
+<p>
+  Logical values are especially useful whenever we want to do something
+  <strong>if a condition is true</strong>. For example:
+</p>
+
+<ul>
+  <li>Print a student's name <strong>if</strong> they earned the highest pre-test score.</li>
+  <li>Keep an observation in a dataset <strong>if</strong> its value is below 1,000,000.</li>
+</ul>
+
+<p>
+  In both cases, R first needs a question that can be answered with <code>TRUE</code> or
+  <code>FALSE</code>.
+</p>
+
+<div class="phase watch">Watch</div>
+
+<p>
+  Your TA will create one value of each type and try a few operations with them.
+</p>
+
+<div class="r-cell">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Data types and what we can do with them</span>
+    <button class="r-run" type="button" disabled>Run</button>
+  </div>
+
+  <textarea class="r-editor" spellcheck="false"># NUMBER
+testScore <- 92
+print(testScore)
+
+# We can do arithmetic with numbers.
+print(testScore + 5)
+
+
+# TEXT
+studentName <- "Jordan"
+print(studentName)
+
+# Arithmetic does NOT make sense for text.
+# Try removing the # from the next line:
+# print(studentName + 5)
+
+
+# LOGICAL
+highestScore <- TRUE
+print(highestScore)
+
+# Weird but true: R treats TRUE like 1 and FALSE like 0 during arithmetic.
+print(TRUE + TRUE)
+print(TRUE + FALSE)
+
+
+# Logical values are especially useful for making decisions.
+if (highestScore) {
+  print(studentName)
+}</textarea>
+
+  <div class="r-output-wrap">
+    <div class="r-output-label">Output</div>
+    <pre class="r-output">R is still loading…</pre>
+  </div>
+</div>
+
+<div class="phase try">Try</div>
+
+<p>
+  Now create your own number, text, and logical values. Then experiment with what R can do with
+  each one.
+</p>
+
+<div class="r-cell" data-submit="true">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Your turn: work with different data types</span>
+    <button class="r-run" type="button" disabled>Run</button>
+  </div>
+
+  <textarea class="r-editor" spellcheck="false"># 1. Create a NUMBER representing a quiz score.
+quizScore <- 
+
+
+# Print it.
+
+
+# Add 5 points to it and print the result.
+
+
+
+# 2. Create some TEXT containing your first name.
+firstName <- 
+
+
+# Print it.
+
+
+
+# 3. Create a LOGICAL value.
+# Imagine this variable answers the question:
+# "Did this student score at least 90?"
+scoredAtLeast90 <- quizScore >= 90
+
+
+# Print the TRUE/FALSE result.
+
+
+
+# 4. Use that logical value in a simple decision.
+# If scoredAtLeast90 is TRUE, R will print your name.
+if (scoredAtLeast90) {
+  print(firstName)
+}
+
+
+# 5. OPTIONAL EXPERIMENT:
+# What happens if you try arithmetic with text?
+# Remove the # below, run the code, and read the error message.
+# print(firstName + 5)</textarea>
+
+  <div class="r-output-wrap">
+    <div class="r-output-label">Output</div>
+    <pre class="r-output">R is still loading…</pre>
+  </div>
+</div>
+      
     </section>
 
     <section id="vectors">
@@ -1444,7 +1585,7 @@ semesterScreenTime
         You have already used <strong>functions</strong> earlier in the course. A function takes one or more
         <strong>inputs</strong>, performs an algorithm, and produces an <strong>output</strong>.
         R comes with many useful pre-written functions for basic math and statistics, including
-        <code>sum()</code>, <code>mean()</code>, <code>median()</code>, and <code>summary()</code>.
+        <code>sum()</code>, <code>mean()</code>, <code>median()</code>, <code>min()</code>, <code>max()</code>, and <code>summary()</code>.
       </p>
 
       <div class="callout">
@@ -1537,17 +1678,17 @@ print(studyHours)
 
 # Add the vectors together to get the TOTAL number of hours
 # you spend on each class in a typical week.
-totalClassHours <- classHours + studyHours
+# You need to write the arithmetic to define this variable yourself.
+totalClassHours <- 
 
 print(totalClassHours)
 
 
-# What is the average total time per class?
-mean(totalClassHours)
+# What is the average total time per class? (Use the mean function below)
 
 
-# What is the median total time per class?
-median(totalClassHours)</textarea>
+# What is the median total time per class? (Use the mean function below)
+
         <div class="r-output-wrap">
           <div class="r-output-label">Output</div>
           <pre class="r-output">R is still loading…</pre>
