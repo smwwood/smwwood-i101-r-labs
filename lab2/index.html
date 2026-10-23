@@ -1161,7 +1161,7 @@ print("Dataset dimensions (rows, then columns):")
 print(dim(scooterData))
 
 print("Column names:")
-print(names(scooterData))</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase check">Check</div><p>Look at the first six rows together. Which variable identifies the scooter company? Which variable gives the date? Why is <code>trips</code> a daily total rather than a single-trip measurement?</p></section><section id="columns"><div class="section-marker"><div class="part">Part 2</div><h2>Part 1: Work with columns</h2></div><div class="phase watch">Watch</div><div class="figure" style="max-width:860px;margin:18px auto;"><img alt="Diagram highlighting the trips column of scooterData and selecting it using scooterData$trips." src="assets/column_from_dataframe.svg"/></div><p>We can use the same functions from Day 1—such as <code>mean()</code>, <code>median()</code>, and <code>sum()</code>—with a dataset. But it does not make sense to calculate the mean of a whole table that mixes brand names, dates, and distances. Instead, we usually work with one variable (one column) at a time. The dollar sign (<code>$</code>) selects a column. For example, <code>scooterData$trips</code> is a vector, so we can use the same functions on it that we used on vectors on Day 1.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: one column at a time</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Select one column without printing all 5,055 values.
+print(names(scooterData))</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase check">Check</div><p>Let's look at the first six rows together. Which variable identifies the scooter company? Which variable gives the date? What does a value in <code>trips</code> represent?</p></section><section id="columns"><div class="section-marker"><div class="part">Part 2</div><h2>Part 1: Work with columns</h2></div><div class="phase watch">Watch</div><div class="figure" style="max-width:860px;margin:18px auto;"><img alt="Diagram highlighting the trips column of scooterData and selecting it using scooterData$trips." src="assets/column_from_dataframe.svg"/></div><p>We can use the same functions from Day 1—such as <code>mean()</code>, <code>median()</code>, and <code>sum()</code>—with a dataset. But it does not make sense to calculate the mean of a whole table that mixes brand names, dates, and distances. Instead, we usually work with one variable (one column) at a time. The dollar sign (<code>$</code>) selects a column. For example, <code>scooterData$trips</code> is a vector, so we can use the same functions on it that we used on vectors on Day 1.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: one column at a time</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Select one column without printing all 5,055 values.
 trips &lt;- scooterData$trips
 print("First six trip counts:")
 print(head(trips))
@@ -1190,8 +1190,35 @@ print(max(trips))</textarea><div class="r-output-wrap"><div class="r-output-labe
     <div class="part">Part 3</div>
     <h2>Part 3: Find suspicious observations</h2></div>
     <div class="phase watch">Watch</div>
-    <p>Real datasets sometimes include measurements that are implausible or incorrectly recorded. <strong>Filtering</strong> means keeping only the rows that meet a rule. Here, we will investigate provider-days with average trip distances above 20 miles and build a new table that keeps rows at or below 20 miles. This is a <em>practice threshold</em>, not proof that every value above 20 is an error. The original <code>scooterData</code> will stay unchanged.</p><p><code>filter(data, condition)</code> is a function from a popular library (package) in R called <code>dplyr</code>: it makes a new table containing only rows where the condition is true.</p>
-    <p></p>In the histogram below, <code>breaks = seq(0, 20, by = 1)</code> makes one-mile buckets, so the common distances are easier to see. Values above 20 miles have already been counted; they are intentionally excluded from this particular graph.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: inspect, filter, then graph</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Step 1: How many provider-days exceed 20 miles?
+    <p>Real datasets sometimes include measurements that are implausible or incorrectly recorded. Let's look at our data as a graph to understand more about the large maximum value for avg_distance.</p>
+    
+    <p></p>We can use the function <code>hist()</code> to create a histogram of our data. This will show us how the data in avg_distance is distributed.  In a histogram, the x-axis defines a set of binned intervals, and the y-axis shows how much of our data falls within each interval. </p>
+    <div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: Create a histogram</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># This will create a basic histogram of the avg_distance column.
+hist(scooterData$avg_distance)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div>
+    <p>We can see that most of the values are small, but there are a few values that are much larger. Let's investigate further.</p>
+    <p> We can use arguments in our <code>hist()</code> function to customize the appearance of the histogram. This can help us "zoom in" on the distribution of the data. We will use <code>xlim</code> to set the limits of the x-axis and <code>ylim</code> to set the limits of the y-axis.</p>
+<div class="r-cell">
+  <div class="r-cell-head"><span class="r-cell-label">Example: Customize the histogram</span><button class="r-run"
+      disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Let's zoom in our our histogram to see the extremely large values more clearly. We will set the x-axis to go from 1000 to 6000 and the y-axis to go from 0 to 50.
+hist(scooterData$avg_distance, xlim = c(1000, 6000), ylim = c(0, 50))
+# We can see that there are a few values that are much larger than the rest of the data. These values may be errors or outliers.
+# Now we can "zoom in" on the smaller values to see where most of the data is concentrated. We will set the x-axis to go from 0 to 20 and the y-axis to go from 0 to 5000.
+# By default, hist() is creating approximately 12 bins for this dataset. We can use the breaks argument to specify the number of bins we want. We will use 30 bins to see the distribution of the data more clearly.
+hist(scooterData$avg_distance, xlim = c(0, 20), breaks = 5000)</textarea>
+  <div class="r-output-wrap">
+    <div class="r-output-label">Output</div>
+    <pre class="r-output">R is still loading…</pre>
+    <div class="r-plots"></div>
+  </div>
+</div>
+
+    <p><strong>Filtering</strong> means keeping only the rows that meet a rule. Here, we will investigate provider-days with
+      average trip distances above 20 miles and build a new table that keeps rows at or below 20 miles. This is a
+      <em>practice threshold</em>, not proof that every value above 20 is an error. The original <code>scooterData</code>
+      will stay unchanged.</p>
+    <p><code>filter(data, condition)</code> is a function from a popular library (package) in R called <code>dplyr</code>:
+      it makes a new table containing only rows where the condition is true. We've already loaded this package for you!</p>
+     <div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: inspect, filter, then graph</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Step 1: How many provider-days exceed 20 miles?
 print("Provider-days above 20 miles:")
 print(sum(scooterData$avg_distance &gt; 20))
 
@@ -1207,10 +1234,38 @@ print(nrow(cleanScooters))
 
 # Step 3: show the typical values using one-mile bins.
 # This graph only uses the filtered values (0–20 miles).
-hist(cleanScooters$avg_distance,
-     breaks = seq(0, 20, by = 1),
-     main = "Average Trip Distance: 0–20 Miles",
-     xlab = "Average distance (miles)")</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase try">Try</div><p>Compare the <strong>original dataset, <code>scooterData</code></strong>, with the <strong>filtered dataset, <code>cleanScooters</code></strong>. Use the familiar <code>mean()</code> and <code>median()</code> functions on the <code>avg_distance</code> column of each table. Write the code yourself using the comments below.</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: compare before and after filtering</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># In the original dataset, scooterData:
+hist(cleanScooters$avg_distance)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div>
+     
+    <div class="r-cell">
+      <div class="r-cell-head"><span class="r-cell-label">Example: inspect, filter, then graph</span><button class="r-run"
+          disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Step 1: How many provider-days exceed 20 miles?
+    print("Provider-days above 20 miles:")
+    print(sum(scooterData$avg_distance &gt; 20))
+    
+    # Step 2: filter_rows() keeps rows that meet a condition.
+    # The condition is tested separately for each row.
+    # Keep rows with an average distance of 20 miles or less.
+    cleanScooters &lt;- filter_rows(scooterData, avg_distance &lt;= 20)
+    
+    print("Original number of rows:")
+    print(nrow(scooterData))
+    print("Filtered number of rows:")
+    print(nrow(cleanScooters))
+    
+    # Step 3: show the typical values using one-mile bins.
+    # This graph only uses the filtered values (0–20 miles).
+    hist(cleanScooters$avg_distance,
+         breaks = seq(0, 20, by = 1),
+         main = "Average Trip Distance: 0–20 Miles",
+         xlab = "Average distance (miles)")</textarea>
+      <div class="r-output-wrap">
+        <div class="r-output-label">Output</div>
+        <pre class="r-output">R is still loading…</pre>
+        <div class="r-plots"></div>
+      </div>
+    </div>
+     
+      <div class="phase try">Try</div><p>Compare the <strong>original dataset, <code>scooterData</code></strong>, with the <strong>filtered dataset, <code>cleanScooters</code></strong>. Use the familiar <code>mean()</code> and <code>median()</code> functions on the <code>avg_distance</code> column of each table. Write the code yourself using the comments below.</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: compare before and after filtering</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># In the original dataset, scooterData:
 # Find the mean of avg_distance.
 
 
@@ -1234,10 +1289,16 @@ hist(cleanScooters$avg_distance,
         column, and the numeric y column.</div>
     </div>
     </div>
-    <div class="caption">For our helpers: <code>data</code> tells R which table, <code>x</code> tells R what we compare, and
-      <code>y</code> tells R which value to summarize or graph.</div>
+    <div class="caption">For our helpers: <code>data</code> tells R which table, <code>x</code> tells R the variable on the x-axis, and <code>y</code> tells R the variable on the y-axis. We generally put the independent (causal) variable on the x-axis and the dependent (responding) variable on the y-axis.</div>
     <div class="figure" style="max-width:850px;margin:22px auto;"><img alt="Bar chart labeling horizontal x axis as movie title and vertical y axis as box office sales." src="assets/xy_axes.svg"/></div>
-<div class="phase watch">Watch</div><p>To compare companies, we want a separate summary for each provider. Our helper functions use three inputs: <code>data</code> (the table), <code>x</code> (the groups), and <code>y</code> (the numeric values). We use the same <code>x</code> and <code>y</code> idea when making a graph.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: trips by provider</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Total trips by scooter provider.
+<div class="phase watch">Watch</div><p>In the code below, we'll use a function called <code>total_by</code>. This is a function we wrote and loaded for you.
+  For any R aficianados, our function is based on the R function <code>aggregate</code>. The custom functions in our lab
+  create a common interface to R that is simpler for new users!</code> </p>
+  <p>To compare companies, we want a separate summary for each provider. Our helper functions use three inputs: <code>data</code> (the table), <code>x</code> (the groups), and <code>y</code> (the numeric values). We use the same <code>x</code> and <code>y</code> idea when making a graph.</p>
+  <p>In the code below, we'll use two functions: <code>total_by</code> and <code>average_by</code>. We wrote and loaded these functionsfor you.
+    For any R aficianados, our functions are based on the dplyr function <code>summarize</code>. The custom functions in our lab
+    create a common interface to R that is simpler for new users!</code> </p>
+    <div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: trips by provider</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Total trips by scooter provider.
 providerTrips &lt;- total_by(cleanScooters, x = provider_name, y = trips)
 print(providerTrips)
 
