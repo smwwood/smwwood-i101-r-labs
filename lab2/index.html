@@ -1192,7 +1192,7 @@ code{background:#eef3f9;padding:1px 4px;border-radius:4px;}
       <div class="caption">
         Just like a variable can hold one number or one vector, 
         it can also hold a whole table. In this lab, that table is 
-        called <code>scooterData</code>. We have already loaded scooterData 
+        called <code>scooter_data</code>. We have already loaded scooter_data 
         into this environment for you!
       </div>
       <img
@@ -1206,7 +1206,7 @@ code{background:#eef3f9;padding:1px 4px;border-radius:4px;}
         in a variable. In a <strong>tidy</strong> data frame, each 
         row is one observation, each column is one variable, and 
         each cell contains one value. In our data, one row is one 
-        scooter provider on one day. Printing <code>scooterData</code> 
+        scooter provider on one day. Printing <code>scooter_data</code> 
         would fill the screen with thousands of rows. Instead, 
         <code>head()</code> shows the first six rows, and <code>dim()</code> 
         tells us how many rows and columns it has.
@@ -1214,17 +1214,17 @@ code{background:#eef3f9;padding:1px 4px;border-radius:4px;}
       
       <div class="r-cell"  data-submit="false">
         <div class="r-cell-head">
-          <span class="r-cell-label">Example: look at the table</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Printing scooterData would show thousands of rows.
+          <span class="r-cell-label">Example: look at the table</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Printing scooter_data would show thousands of rows.
 # head() shows just the first six.
 print("First six rows:")
-print(head(scooterData))
+print(head(scooter_data))
 
 # dim() reports the number of rows and columns.
 print("Dataset dimensions (rows, then columns):")
-print(dim(scooterData))
+print(dim(scooter_data))
 
 print("Column names:")
-print(names(scooterData))</textarea>
+print(names(scooter_data))</textarea>
 
 <div class="r-output-wrap">
   <div class="r-output-label">Output</div>
@@ -1250,7 +1250,7 @@ print(names(scooterData))</textarea>
   
   <div class="phase watch">Watch</div>
   <div class="figure" style="max-width:860px;margin:18px auto;">
-    <img alt="Diagram highlighting the trips column of scooterData and selecting it using scooterData$trips." src="assets/column_from_dataframe.svg"/>
+    <img alt="Diagram highlighting the trips column of scooter_data and selecting it using scooter_data$trips." src="assets/column_from_dataframe.svg"/>
   </div>
   <p>
     We can use the same functions from Day 1—such as <code>mean()</code>, 
@@ -1258,7 +1258,7 @@ print(names(scooterData))</textarea>
     does not make sense to calculate the mean of a whole table that mixes 
     brand names, dates, and distances. Instead, we usually work with one 
     variable (one column) at a time. The dollar sign (<code>$</code>) 
-    selects a column. For example, <code>scooterData$trips</code> is a 
+    selects a column. For example, <code>scooter_data$trips</code> is a 
     vector, so we can use the same functions on it that we used on vectors 
     on Day 1.
   </p>
@@ -1267,7 +1267,7 @@ print(names(scooterData))</textarea>
       <span class="r-cell-label">Example: one column at a time</span><button class="r-run" disabled="" type="button">Run</button>
     </div>
     <textarea class="r-editor" spellcheck="false"># Select one column without printing all 5,055 values.
-trips &lt;- scooterData$trips
+trips &lt;- scooter_data$trips
 print("First six trip counts:")
 print(head(trips))
 
@@ -1356,7 +1356,7 @@ print(max(trips))</textarea>
       </div>
       <textarea class="r-editor" spellcheck="false"># This will create a basic histogram of the avg_distance column.
 
-hist(scooterData$avg_distance)</textarea>
+hist(scooter_data$avg_distance)</textarea>
 <div class="r-output-wrap">
   <div class="r-output-label">Output</div>
   <pre class="r-output">R is still loading…</pre>
@@ -1384,7 +1384,7 @@ hist(scooterData$avg_distance)</textarea>
     <textarea class="r-editor" spellcheck="false"># Let's zoom in our our histogram to see the extremely large 
 # values more clearly. We will set the x-axis to go from 1000 to 6000 
 # and the y-axis to go from 0 to 50.
-hist(scooterData$avg_distance, xlim = c(1000, 6000), ylim = c(0, 50))
+hist(scooter_data$avg_distance, xlim = c(1000, 6000), ylim = c(0, 50))
 
 # We can see that there are a few values that are much larger than 
 # the rest of the data. These values may be errors or outliers.
@@ -1395,7 +1395,7 @@ hist(scooterData$avg_distance, xlim = c(1000, 6000), ylim = c(0, 50))
 # We can use the breaks argument to specify the number of bins we want. 
 # Let's use a larger number of bins to see the distribution of the data 
 # more clearly.
-hist(scooterData$avg_distance, xlim = c(0, 20), breaks = 5000)</textarea>
+hist(scooter_data$avg_distance, xlim = c(0, 20), breaks = 5000)</textarea>
   <div class="r-output-wrap">
     <div class="r-output-label">Output</div>
     <pre class="r-output">R is still loading…</pre>
@@ -1408,7 +1408,7 @@ hist(scooterData$avg_distance, xlim = c(0, 20), breaks = 5000)</textarea>
   Here, we will investigate provider-days with average trip distances above 
   20 miles and build a new table that keeps rows at or below 20 miles. This is a
   <em>practice threshold</em>, not proof that every value above 20 is an error. 
-  The original <code>scooterData</code> will stay unchanged.
+  The original <code>scooter_data</code> will stay unchanged.
 </p>
 <p>
   <code>filter(data, condition)</code> is a function from a popular library (package) 
@@ -1424,13 +1424,13 @@ hist(scooterData$avg_distance, xlim = c(0, 20), breaks = 5000)</textarea>
   <textarea class="r-editor" spellcheck="false"># Step 1: filter_rows() keeps rows that meet a condition.
 # The condition is tested separately for each row.
 # Keep rows with an average distance of less than 20 miles.
-clean_scooters &lt;- filter_rows(scooterData, avg_distance &lt; 20)
+clean_scooters &lt;- filter_rows(scooter_data, avg_distance &lt; 20)
 
 # How many observations (rows) did we start with?
 # And how many observations (rows) do we have after filtering?
 # nrow() counts the number of rows in a table.
 print("Original number of rows:")
-print(nrow(scooterData))
+print(nrow(scooter_data))
 print("Filtered number of rows:")
 print(nrow(clean_scooters))
 
@@ -1458,7 +1458,7 @@ hist(clean_scooters$avg_distance)</textarea>
     <span class="r-cell-label">Your turn: compare before and after filtering</span>
     <button class="r-run" disabled="" type="button">Run</button>
   </div>
-  <textarea class="r-editor" spellcheck="false"># In the original dataset, scooterData:
+  <textarea class="r-editor" spellcheck="false"># In the original dataset, scooter_data:
 # Find the mean of avg_distance.
 
 
@@ -1625,7 +1625,7 @@ bar_graph(providerTrips, x = provider_name, y = trips)
 
 
 # Graph 2: Which provider has the most scooters available on average? 
-# Use the original scooterData table, not the filtered clean_scooters table. 
+# Use the original scooter_data table, not the filtered clean_scooters table. 
 # First, use average_by() to summarize by provider_name.
 # Put provider_name on x and available_scooters on y.
 
@@ -1761,7 +1761,7 @@ const csv = await response.text();
 const helpers = await helpersResponse.text();
  await webR.FS.writeFile('/home/web_user/scooter_activity_daily.csv',new TextEncoder().encode(csv));
  await webR.FS.writeFile('/home/web_user/i101_helpers.R',new TextEncoder().encode(helpers));
- await webR.evalRVoid(`scooterData <- read.csv('/home/web_user/scooter_activity_daily.csv', stringsAsFactors = FALSE)
+ await webR.evalRVoid(`scooter_data <- read.csv('/home/web_user/scooter_activity_daily.csv', stringsAsFactors = FALSE)
 source('/home/web_user/i101_helpers.R')`);
  status.classList.add('ready');statusText.textContent='R is ready. The scooter dataset is loaded; all code boxes share one R session.';
  buttons.forEach(button=>{button.disabled=false;button.addEventListener('click',()=>runCell(button.closest('.r-cell'),button));});
