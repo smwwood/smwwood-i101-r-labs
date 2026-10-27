@@ -1127,31 +1127,94 @@ code{background:#eef3f9;padding:1px 4px;border-radius:4px;}
 
 .tilde-carousel{max-width:940px;margin:22px auto 20px;}
 .tilde-carousel-intro{color:#354252;margin:14px 0 18px;}
-</style></head><body><main class="wrap"><header class="hero" id="top"><span class="eyebrow">R Lab 2</span><h1>Exploring a Real Dataset</h1><p class="lede">On Day 1 you worked with individual numbers and vectors. Today you'll investigate thousands of real scooter observations from Bloomington.</p><div class="r-status" id="r-status"><span class="r-dot"></span><span id="r-status-text">Starting R and loading the scooter data…</span></div></header>
-<div class="card">
-<h2>How this lab works</h2>
-<p>Follow your TA through the same three steps as Day 1: <strong>Watch</strong> a demonstration, <strong>Try</strong> the next problem, then <strong>Check</strong> your results together. All code boxes share one R session, so variables made in an earlier box are available in later boxes.</p>
-<p><strong>Today’s questions:</strong> What can scooter data tell us about how scooters are used in Bloomington? Why should we check the data before drawing conclusions?</p>
-<p>In this real dataset, one row is <em>one scooter provider</em> on <em>one day</em>, not one individual scooter trip. We will analyze daily totals and averages.</p>
-<div class="figure scooter-figure">
-<img alt="A person riding a green scooter on the Indiana University campus in Bloomington." src="assets/bloomington_scooter_photo.png"/>
-<div class="caption">Source image from the <a href="https://www.heraldtimesonline.com/story/news/local/2023/04/18/bloomington-plans-changes-to-policies-for-lime-bird-veo-scooters/70069927007/" rel="noopener" target="_blank">Herald-Times article</a>.</div>
-</div>
+</style></head>
 
-<section id="inspect"><div class="section-marker"><div class="part">Part 1</div>
-  <h2>Part 0: Meet the scooter dataset</h2></div>
-  <div class="card"> <p><strong>First, open the full dataset:</strong> <a download="scooter_activity_daily.csv"
-      href="assets/scooter_activity_daily.csv">Download the scooter data (CSV)</a>. Open it in a spreadsheet program to
-    see its rows and columns outside R. You do not need to edit it or upload it.</p></div>
+<body>
+  <main class="wrap">
+    <header class="hero" id="top">
+      <span class="eyebrow">R Lab 2</span>
+      <h1>Exploring a Real Dataset</h1>
+      <p class="lede">
+        On Day 1 you worked with individual numbers and vectors. 
+        Today you'll investigate thousands of real scooter 
+        observations from Bloomington.
+      </p>
+      <div class="r-status" id="r-status">
+        <span class="r-dot"></span>
+        <span id="r-status-text">Starting R and loading the scooter data…</span>
+      </div>
+    </header>
+
+<div class="card">
+  <h2>How this lab works</h2>
+  <p>
+    Follow your TA through the same three steps 
+    as Day 1: <strong>Watch</strong> a demonstration, 
+    <strong>Try</strong> the next problem, then 
+    <strong>Check</strong> your results together. All 
+    code boxes share one R session, so variables made 
+    in an earlier box are available in later boxes.
+  </p>
+  <p>
+    <strong>Today’s questions:</strong> What can scooter 
+    data tell us about how scooters are used in Bloomington? 
+    Why should we check the data before drawing conclusions?
+  </p>
+  <p>
+    In this real dataset, one row is <em>one scooter provider</em> 
+    on <em>one day</em>, not one individual scooter trip. We will 
+    analyze daily totals and averages.
+  </p>
+  
+  <div class="figure scooter-figure">
+    <img alt="A person riding a green scooter on the Indiana University campus in Bloomington." src="assets/bloomington_scooter_photo.png"/>
+    <div class="caption">Source image from the <a href="https://www.heraldtimesonline.com/story/news/local/2023/04/18/bloomington-plans-changes-to-policies-for-lime-bird-veo-scooters/70069927007/" rel="noopener" target="_blank">Herald-Times article</a>.</div>
+  </div>
+
+<section id="inspect">
+  <div class="section-marker">
+    <div class="part">Part 1</div>
+    <h2>Part 0: Meet the scooter dataset</h2>
+  </div>
+  
+  <div class="card">
+    <p>
+      <strong>First, open the full dataset:</strong> 
+      <a download="scooter_activity_daily.csv" href="assets/scooter_activity_daily.csv">
+        Download the scooter data (CSV)</a>. 
+        Open it in a spreadsheet program to see its 
+        rows and columns outside R. You do not need 
+        to edit it or upload it.
+      </p>
+    </div>
+    
     <div class="figure dataframe-figure">
-      <div class="caption">Just like a variable can hold one number or one vector, it can also hold a whole table. In this
-        lab, that table is called <code>scooterData</code>. We have already loaded scooterData into this environment for
-        you!</div>
+      <div class="caption">
+        Just like a variable can hold one number or one vector, 
+        it can also hold a whole table. In this lab, that table is 
+        called <code>scooterData</code>. We have already loaded scooterData 
+        into this environment for you!
+      </div>
       <img
         alt="Diagram showing that a variable in R can store a number, a word, a logical value, a vector, or a whole data frame."
         src="assets/data_frame_variable.svg" />
-    </div>
-  <div class="phase watch">Watch</div><p>A <strong>data frame</strong> is a table of data stored in a variable. In a <strong>tidy</strong> data frame, each row is one observation, each column is one variable, and each cell contains one value. In our data, one row is one scooter provider on one day. Printing <code>scooterData</code> would fill the screen with thousands of rows. Instead, <code>head()</code> shows the first six rows, and <code>dim()</code> tells us how many rows and columns it has.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: look at the table</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Printing scooterData would show thousands of rows.
+      </div>
+      
+      <div class="phase watch">Watch</div>
+      <p>
+        A <strong>data frame</strong> is a table of data stored 
+        in a variable. In a <strong>tidy</strong> data frame, each 
+        row is one observation, each column is one variable, and 
+        each cell contains one value. In our data, one row is one 
+        scooter provider on one day. Printing <code>scooterData</code> 
+        would fill the screen with thousands of rows. Instead, 
+        <code>head()</code> shows the first six rows, and <code>dim()</code> 
+        tells us how many rows and columns it has.
+      </p>
+      
+      <div class="r-cell"  data-submit="false">
+        <div class="r-cell-head">
+          <span class="r-cell-label">Example: look at the table</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Printing scooterData would show thousands of rows.
 # head() shows just the first six.
 print("First six rows:")
 print(head(scooterData))
@@ -1161,7 +1224,49 @@ print("Dataset dimensions (rows, then columns):")
 print(dim(scooterData))
 
 print("Column names:")
-print(names(scooterData))</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase check">Check</div><p>Let's look at the first six rows together. Which variable identifies the scooter company? Which variable gives the date? What does a value in <code>trips</code> represent?</p></section><section id="columns"><div class="section-marker"><div class="part">Part 2</div><h2>Part 1: Work with columns</h2></div><div class="phase watch">Watch</div><div class="figure" style="max-width:860px;margin:18px auto;"><img alt="Diagram highlighting the trips column of scooterData and selecting it using scooterData$trips." src="assets/column_from_dataframe.svg"/></div><p>We can use the same functions from Day 1—such as <code>mean()</code>, <code>median()</code>, and <code>sum()</code>—with a dataset. But it does not make sense to calculate the mean of a whole table that mixes brand names, dates, and distances. Instead, we usually work with one variable (one column) at a time. The dollar sign (<code>$</code>) selects a column. For example, <code>scooterData$trips</code> is a vector, so we can use the same functions on it that we used on vectors on Day 1.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: one column at a time</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Select one column without printing all 5,055 values.
+print(names(scooterData))</textarea>
+
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<div class="phase check">Check</div>
+<p>
+  Let's look at the first six rows together. Which 
+  variable identifies the scooter company? Which 
+  variable gives the date? What does a value in 
+  <code>trips</code> represent?
+</p>
+</section>
+
+<section id="columns">
+  <div class="section-marker">
+    <div class="part">Part 2</div>
+    <h2>Part 1: Work with columns</h2>
+  </div>
+  
+  <div class="phase watch">Watch</div>
+  <div class="figure" style="max-width:860px;margin:18px auto;">
+    <img alt="Diagram highlighting the trips column of scooterData and selecting it using scooterData$trips." src="assets/column_from_dataframe.svg"/>
+  </div>
+  <p>
+    We can use the same functions from Day 1—such as <code>mean()</code>, 
+    <code>median()</code>, and <code>sum()</code>—with a dataset. But it 
+    does not make sense to calculate the mean of a whole table that mixes 
+    brand names, dates, and distances. Instead, we usually work with one 
+    variable (one column) at a time. The dollar sign (<code>$</code>) 
+    selects a column. For example, <code>scooterData$trips</code> is a 
+    vector, so we can use the same functions on it that we used on vectors 
+    on Day 1.
+  </p>
+  <div class="r-cell" data-submit="false">
+    <div class="r-cell-head">
+      <span class="r-cell-label">Example: one column at a time</span><button class="r-run" disabled="" type="button">Run</button>
+    </div>
+    <textarea class="r-editor" spellcheck="false"># Select one column without printing all 5,055 values.
 trips &lt;- scooterData$trips
 print("First six trip counts:")
 print(head(trips))
@@ -1173,7 +1278,27 @@ print("Median trips per provider-day:")
 print(median(trips))
 
 print("Largest daily trip count:")
-print(max(trips))</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase try">Try</div><p>Explore <code>avg_distance</code>, which records the average trip distance for each provider-day. Calculate its mean, median, and maximum. Do any of the values seem surprising?</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: summarize distance</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Use the avg_distance column.
+print(max(trips))</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<div class="phase try">Try</div>
+<p>
+  Explore <code>avg_distance</code>, which records the 
+  average trip distance for each provider-day. Calculate 
+  its mean, median, and maximum. Do any of the values seem 
+  surprising?
+</p>
+
+<div class="r-cell" data-submit="true">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Your turn: summarize distance</span>
+    <button class="r-run" disabled="" type="button">Run</button>
+  </div><textarea class="r-editor" spellcheck="false"># Use the avg_distance column.
 # Show the first few values.
 
 
@@ -1184,26 +1309,92 @@ print(max(trips))</textarea><div class="r-output-wrap"><div class="r-output-labe
 
 
 # Find the maximum average distance.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer2">What seems unusual about the average-distance values?</label><textarea class="student-answer" data-question="What seems unusual about average distance?" id="answer2" placeholder="Write your observation here…"></textarea><div class="phase check">Check</div><p>Compare the mean, median, and maximum. What happens to an average when a few observations are extremely large?</p></section>
+</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<label class="answer-label" for="answer2">
+  What seems unusual about the average-distance values?
+</label>
+<textarea class="student-answer" data-question="What seems unusual about average distance?" id="answer2" placeholder="Write your observation here…"></textarea>
+
+<div class="phase check">Check</div>
+<p>
+  Compare the mean, median, and maximum. What happens to an 
+  average when a few observations are extremely large?
+</p>
+</section>
+
 <section id="quality">
   <div class="section-marker">
     <div class="part">Part 3</div>
     <h2>Part 3: Find suspicious observations</h2></div>
     <div class="phase watch">Watch</div>
-    <p>Real datasets sometimes include measurements that are implausible or incorrectly recorded. Let's look at our data as a graph to understand more about the large maximum value for avg_distance.</p>
+    <p>
+      Real datasets sometimes include measurements that are 
+      implausible or incorrectly recorded. Let's look at our 
+      data as a graph to understand more about the large maximum 
+      value for avg_distance.
+    </p>
     
-    <p></p>We can use the function <code>hist()</code> to create a histogram of our data. This will show us how the data in avg_distance is distributed.  In a histogram, the x-axis defines a set of binned intervals, and the y-axis shows how much of our data falls within each interval. </p>
-    <div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: Create a histogram</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># This will create a basic histogram of the avg_distance column.
-hist(scooterData$avg_distance)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div>
-    <p>We can see that most of the values are small, but there are a few values that are much larger. Let's investigate further.</p>
-    <p> We can use arguments in our <code>hist()</code> function to customize the appearance of the histogram. This can help us "zoom in" on the distribution of the data. We will use <code>xlim</code> to set the limits of the x-axis and <code>ylim</code> to set the limits of the y-axis.</p>
-<div class="r-cell">
-  <div class="r-cell-head"><span class="r-cell-label">Example: Customize the histogram</span><button class="r-run"
-      disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Let's zoom in our our histogram to see the extremely large values more clearly. We will set the x-axis to go from 1000 to 6000 and the y-axis to go from 0 to 50.
+    <p>
+      <br>We can use the function <code>hist()</code> to create 
+      a histogram of our data. This will show us how the data in 
+      avg_distance is distributed.  In a histogram, the x-axis defines 
+      a set of binned intervals, and the y-axis shows how much of our 
+      data falls within each interval. 
+    </p>
+
+    <div class="r-cell" data-submit="false">
+      <div class="r-cell-head">
+        <span class="r-cell-label">Example: Create a histogram</span>
+        <button class="r-run" disabled="" type="button">Run</button>
+      </div>
+      <textarea class="r-editor" spellcheck="false"># This will create a basic histogram of the avg_distance column.
+
+hist(scooterData$avg_distance)</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+    <p>
+      We can see that most of the values are small, but there are a few 
+      values that are much larger. Let's investigate further.
+    </p>
+    <p> 
+      We can use arguments in our <code>hist()</code> function to customize 
+      the appearance of the histogram. This can help us "zoom in" on the 
+      distribution of the data. We will use <code>xlim</code> to set the 
+      limits of the x-axis and <code>ylim</code> to set the limits of the 
+      y-axis.
+    </p>
+
+<div class="r-cell" data-submit="false">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Example: Customize the histogram</span
+      <button class="r-run" disabled="" type="button">Run</button>
+    </div>
+    <textarea class="r-editor" spellcheck="false"># Let's zoom in our our histogram to see the extremely large 
+# values more clearly. We will set the x-axis to go from 1000 to 6000 
+# and the y-axis to go from 0 to 50.
 hist(scooterData$avg_distance, xlim = c(1000, 6000), ylim = c(0, 50))
-# We can see that there are a few values that are much larger than the rest of the data. These values may be errors or outliers.
-# Now we can "zoom in" on the smaller values to see where most of the data is concentrated. We will set the x-axis to go from 0 to 20 and the y-axis to go from 0 to 5000.
-# By default, hist() is creating approximately 12 bins for this dataset. We can use the breaks argument to specify the number of bins we want. We will use 30 bins to see the distribution of the data more clearly.
+
+# We can see that there are a few values that are much larger than 
+# the rest of the data. These values may be errors or outliers.
+# Now we can "zoom in" on the smaller values to see where most of the data 
+# is concentrated. We will set the x-axis to go from 0 to 20 and the 
+# y-axis to go from 0 to 5000.
+# By default, hist() is creating approximately 12 bins for this dataset. 
+# We can use the breaks argument to specify the number of bins we want. 
+# Let's use a larger number of bins to see the distribution of the data 
+# more clearly.
 hist(scooterData$avg_distance, xlim = c(0, 20), breaks = 5000)</textarea>
   <div class="r-output-wrap">
     <div class="r-output-label">Output</div>
@@ -1212,60 +1403,62 @@ hist(scooterData$avg_distance, xlim = c(0, 20), breaks = 5000)</textarea>
   </div>
 </div>
 
-    <p><strong>Filtering</strong> means keeping only the rows that meet a rule. Here, we will investigate provider-days with
-      average trip distances above 20 miles and build a new table that keeps rows at or below 20 miles. This is a
-      <em>practice threshold</em>, not proof that every value above 20 is an error. The original <code>scooterData</code>
-      will stay unchanged.</p>
-    <p><code>filter(data, condition)</code> is a function from a popular library (package) in R called <code>dplyr</code>:
-      it makes a new table containing only rows where the condition is true. We've already loaded this package for you!</p>
-     <div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: inspect, filter, then graph</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Step 1: How many provider-days exceed 20 miles?
-print("Provider-days above 20 miles:")
-print(sum(scooterData$avg_distance &gt; 20))
+<p>
+  <strong>Filtering</strong> means keeping only the rows that meet a rule. 
+  Here, we will investigate provider-days with average trip distances above 
+  20 miles and build a new table that keeps rows at or below 20 miles. This is a
+  <em>practice threshold</em>, not proof that every value above 20 is an error. 
+  The original <code>scooterData</code> will stay unchanged.
+</p>
+<p>
+  <code>filter(data, condition)</code> is a function from a popular library (package) 
+  in R called <code>dplyr</code>: it makes a new table containing only rows where 
+  the condition is true. We've already loaded this package for you!
+</p>
 
-# Step 2: filter_rows() keeps rows that meet a condition.
+<div class="r-cell" data-submit="false">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Example: inspect, filter, then graph</span>
+    <button class="r-run" disabled="" type="button">Run</button>
+  </div>
+  <textarea class="r-editor" spellcheck="false"># Step 1: filter_rows() keeps rows that meet a condition.
 # The condition is tested separately for each row.
-# Keep rows with an average distance of 20 miles or less.
-cleanScooters &lt;- filter_rows(scooterData, avg_distance &lt;= 20)
+# Keep rows with an average distance of less than 20 miles.
+cleanScooters &lt;- filter_rows(scooterData, avg_distance &lt; 20)
 
+# How many observations (rows) did we start with?
+# And how many observations (rows) do we have after filtering?
+# nrow() counts the number of rows in a table.
 print("Original number of rows:")
 print(nrow(scooterData))
 print("Filtered number of rows:")
 print(nrow(cleanScooters))
 
-# Step 3: show the typical values using one-mile bins.
+# Step 2: show the typical values using one-mile bins.
 # This graph only uses the filtered values (0–20 miles).
-hist(cleanScooters$avg_distance)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div>
-     
-    <div class="r-cell">
-      <div class="r-cell-head"><span class="r-cell-label">Example: inspect, filter, then graph</span><button class="r-run"
-          disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Step 1: How many provider-days exceed 20 miles?
-    print("Provider-days above 20 miles:")
-    print(sum(scooterData$avg_distance &gt; 20))
-    
-    # Step 2: filter_rows() keeps rows that meet a condition.
-    # The condition is tested separately for each row.
-    # Keep rows with an average distance of 20 miles or less.
-    cleanScooters &lt;- filter_rows(scooterData, avg_distance &lt;= 20)
-    
-    print("Original number of rows:")
-    print(nrow(scooterData))
-    print("Filtered number of rows:")
-    print(nrow(cleanScooters))
-    
-    # Step 3: show the typical values using one-mile bins.
-    # This graph only uses the filtered values (0–20 miles).
-    hist(cleanScooters$avg_distance,
-         breaks = seq(0, 20, by = 1),
-         main = "Average Trip Distance: 0–20 Miles",
-         xlab = "Average distance (miles)")</textarea>
-      <div class="r-output-wrap">
-        <div class="r-output-label">Output</div>
-        <pre class="r-output">R is still loading…</pre>
-        <div class="r-plots"></div>
-      </div>
-    </div>
-     
-      <div class="phase try">Try</div><p>Compare the <strong>original dataset, <code>scooterData</code></strong>, with the <strong>filtered dataset, <code>cleanScooters</code></strong>. Use the familiar <code>mean()</code> and <code>median()</code> functions on the <code>avg_distance</code> column of each table. Write the code yourself using the comments below.</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: compare before and after filtering</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># In the original dataset, scooterData:
+hist(cleanScooters$avg_distance)</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<div class="phase try">Try</div>
+<p>
+  Compare the <strong>original dataset, <code>scooterData</code>
+  </strong>, with the <strong>filtered dataset, <code>cleanScooters</code></strong>. 
+  Use the familiar <code>mean()</code> and <code>median()</code> functions on the 
+  <code>avg_distance</code> column of each table. Write the code yourself using the 
+  comments below.
+</p>
+
+<div class="r-cell" data-submit="true">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Your turn: compare before and after filtering</span>
+    <button class="r-run" disabled="" type="button">Run</button>
+  </div>
+  <textarea class="r-editor" spellcheck="false"># In the original dataset, scooterData:
 # Find the mean of avg_distance.
 
 
@@ -1277,51 +1470,220 @@ hist(cleanScooters$avg_distance)</textarea><div class="r-output-wrap"><div class
 
 
 # Find the median of avg_distance.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer3">How did filtering change the mean and the median? Why do you think one changed more than the other?</label><textarea class="student-answer" data-question="How did filtering change the mean and the median?" id="answer3" placeholder="Write your answer here…"></textarea><div class="phase check">Check</div><p>Your mean should change much more than your median. That is a clue that a few extreme values were pulling the average upward.</p></section>
+</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<label class="answer-label" for="answer3">
+  How did filtering change the mean and the median? 
+  Why do you think one changed more than the other?
+</label>
+<textarea class="student-answer" data-question="How did filtering change the mean and the median?" id="answer3" placeholder="Write your answer here…"></textarea>
+<div class="phase check">Check</div>
+<p>
+  Your mean should change much more than your median. 
+  That is a clue that a few extreme values were pulling 
+  the average upward.
+</p>
+</section>
+
 <section id="groups">
   <div class="section-marker">
     <div class="part">Part 4</div>
-    <h2>Part 4: Compare scooter companies</h2></div>
-    <div class="figure cheatsheet-figure">
-      <img alt="Cheatsheet showing a common R pattern: function name, then data, then a function-specific argument."
-        src="assets/function_pattern.svg" />
-      <div class="caption">Our grouped-summary and graph helpers use a consistent pattern: the table, the grouping or x
-        column, and the numeric y column.</div>
-    </div>
-    </div>
-    <div class="caption">For our helpers: <code>data</code> tells R which table, <code>x</code> tells R the variable on the x-axis, and <code>y</code> tells R the variable on the y-axis. We generally put the independent (causal) variable on the x-axis and the dependent (responding) variable on the y-axis.</div>
-    <div class="figure" style="max-width:850px;margin:22px auto;"><img alt="Bar chart labeling horizontal x axis as movie title and vertical y axis as box office sales." src="assets/xy_axes.svg"/></div>
-<div class="phase watch">Watch</div><p>In the code below, we'll use a function called <code>total_by</code>. This is a function we wrote and loaded for you.
-  For any R aficianados, our function is based on the R function <code>aggregate</code>. The custom functions in our lab
-  create a common interface to R that is simpler for new users!</code> </p>
-  <p>To compare companies, we want a separate summary for each provider. Our helper functions use three inputs: <code>data</code> (the table), <code>x</code> (the groups), and <code>y</code> (the numeric values). We use the same <code>x</code> and <code>y</code> idea when making a graph.</p>
-  <p>In the code below, we'll use two functions: <code>total_by</code> and <code>average_by</code>. We wrote and loaded these functionsfor you.
-    For any R aficianados, our functions are based on the dplyr function <code>summarize</code>. The custom functions in our lab
-    create a common interface to R that is simpler for new users!</code> </p>
-    <div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: trips by provider</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Total trips by scooter provider.
+    <h2>Part 4: Compare scooter companies</h2>
+  </div>
+  <div class="figure cheatsheet-figure">
+    <img alt="Cheatsheet showing a common R pattern: function name, then data, then a function-specific argument." src="assets/function_pattern.svg" />
+    <div class="caption">Our grouped-summary and graph helpers use a consistent pattern: the table, the grouping or x column, and the numeric y column.</div>
+  </div>
+</div>
+<div class="caption">For our helpers: <code>data</code> tells R which table, 
+  <code>x</code> tells R the variable on the x-axis, and <code>y</code> 
+  tells R the variable on the y-axis. We generally put the independent 
+  (causal) variable on the x-axis and the dependent (responding) variable 
+  on the y-axis.
+</div>
+<div class="figure" style="max-width:850px;margin:22px auto;">
+  <img alt="Bar chart labeling horizontal x axis as movie title and vertical y axis as box office sales." src="assets/xy_axes.svg"/>
+</div>
+
+<div class="phase watch">Watch</div>
+<p>
+  In the code below, we'll use two functions: <code>total_by</code> and
+  <code>average_by</code>. We wrote and loaded these functions for you.
+  For any R aficianados, our functions are based on the dplyr function 
+  <code>summarize</code>. The custom functions in our lab
+  create a common interface to R that is simpler for new users!
+</p>
+<p>
+  To compare companies, we want a separate summary for each provider. 
+  Our helper functions use three inputs: <code>data</code> (the table), 
+  <code>x</code> (the groups), and <code>y</code> (the numeric values). 
+  We use the same <code>x</code> and <code>y</code> idea when making a graph.
+</p>
+
+<div class="r-cell" data-submit="false">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Example: trips by provider</span>
+    <button class="r-run" disabled="" type="button">Run</button>
+  </div>
+  <textarea class="r-editor" spellcheck="false"># Total trips by scooter provider.
 providerTrips &lt;- total_by(cleanScooters, x = provider_name, y = trips)
 print(providerTrips)
 
 # Average distance by scooter provider.
 providerDistances &lt;- average_by(cleanScooters, x = provider_name, y = avg_distance)
-print(providerDistances)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase try">Try</div><p>Create a new data frame named <code>providerDurations</code> that shows the <strong>average daily average duration</strong> for each provider.</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: summarize durations by provider</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Use average_by() with cleanScooters.
+print(providerDistances)</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<div class="phase try">Try</div>
+<p>
+  Create a new data frame named <code>providerDurations</code> that shows 
+  the <strong>average daily duration</strong> for each provider.
+</p>
+
+<div class="r-cell" data-submit="true">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Your turn: summarize durations by provider</span>
+    <button class="r-run" disabled="" type="button">Run</button>
+  </div>
+  <textarea class="r-editor" spellcheck="false"># Use average_by() with cleanScooters.
 # Set x to provider_name and y to avg_duration.
-# Save the result as providerDurations.
+# Save the result as a variable named providerDurations.
 
 
 # Print the new summary table.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer4">Which provider has the highest average daily average duration? What does that number describe?</label><textarea class="student-answer" data-question="Which provider has the highest average daily average duration?" id="answer4" placeholder="Write your answer here…"></textarea><div class="phase check">Check</div><p>Check the distinction between <code>total_by()</code> and <code>average_by()</code>. Why would summing a column of daily averages answer a different question?</p></section><section id="graphs"><div class="section-marker"><div class="part">Part 5</div><h2>Part 5: Show the patterns</h2></div><div class="phase watch">Watch</div><p>A table gives exact values. A graph makes comparisons easier to see. The graph helpers also take <code>data</code>, <code>x</code>, and <code>y</code>, matching the axes in the movie example.</p><div class="r-cell"><div class="r-cell-head"><span class="r-cell-label">Example: bar graph of provider trip totals</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Bar graph: company on x, total trips on y.
+
+</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<label class="answer-label" for="answer4">
+  Which provider has the highest average daily average duration? 
+  What does that number describe?
+</label>
+<textarea class="student-answer" data-question="Which provider has the highest average daily average duration?" id="answer4" placeholder="Write your answer here…"></textarea>
+<div class="phase check">Check</div>
+<p>
+  Check the distinction between <code>total_by()</code> and <code>average_by()</code>. 
+  Why would summing a column of daily averages answer a different question?
+</p>
+</section>
+
+<section id="graphs"><div class="section-marker">
+  <div class="part">Part 5</div>
+  <h2>Part 5: Show the patterns</h2>
+</div>
+<div class="phase watch">Watch</div>
+<p>
+  A table gives exact values, but a graph makes comparisons easier to see. 
+  The graph helpers also take <code>data</code>, <code>x</code>, and 
+  <code>y</code>, matching the axes in the bar graph example earlier.
+</p>
+<div class="r-cell" data-submit="false">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Example: bar graph of provider trip totals</span>
+    <button class="r-run" disabled="" type="button">Run</button>
+  </div>
+  <textarea class="r-editor" spellcheck="false"># Bar graph: company on x-axis, total trips on y-axis.
 bar_graph(providerTrips, x = provider_name, y = trips)
 
-# Scatter plot: distance on x, duration on y.
-scatter_plot(cleanScooters, x = avg_distance, y = avg_duration)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase try">Try</div><p>Make a bar graph of provider average distances using <code>providerDistances</code>. Then make a scatter plot of trip counts versus available scooters using <code>cleanScooters</code>. Use only <code>bar_graph()</code> and <code>scatter_plot()</code>, as demonstrated above.</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: two graphs</span><button class="r-run" disabled="" type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Graph 1: bar_graph() using providerDistances.
+</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<div class="phase try">Try</div>
+<p>
+  Make a bar graph of provider average distances using 
+  <code>providerDistances</code>. 
+  Use only <code>bar_graph()</code>, as demonstrated above.
+</p>
+<div class="r-cell" data-submit="true">
+  <div class="r-cell-head">
+    <span class="r-cell-label">Your turn: two graphs</span>
+    <button class="r-run" disabled="" type="button">Run</button>
+  </div>
+  <textarea class="r-editor" spellcheck="false"># Use bar_graph() with the providerDistances subset of the data.
 # Put provider_name on x and avg_distance on y.
 
 
-# Graph 2: scatter_plot() using cleanScooters.
-# Put available_scooters on x and trips on y.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="answer5">What do your two graphs reveal? Describe one pattern and one limitation.</label><textarea class="student-answer" data-question="What did the graphs reveal? Give one pattern and one limitation." id="answer5" placeholder="Write 2–3 sentences…"></textarea><div class="phase check">Check</div><p>Compare the x- and y-axes with your TA. Is it possible to conclude from this graph that distance <em>causes</em> duration? Why not?</p></section><section class="card" id="wrapup"><h2>Final reflection</h2><p>You started with thousands of observations, checked their quality, made a filtered table, summarized by company, and graphed patterns. Think about the difference between having data and making a responsible claim from data.</p><label class="answer-label" for="final-reflection">Which choice in this analysis could most affect the conclusion, and what would you investigate before sharing the result?</label><textarea class="student-answer" data-question="Final reflection" id="final-reflection" placeholder="Write 2–3 sentences…"></textarea></section>
-<section class="pdf-submit" id="submit-work"><h2>Save your work</h2><p>Download a PDF containing your <strong>Try</strong> code, the output of each activity, your graphs, and written responses. Upload that PDF to the Day 2 assignment in Canvas.</p><button class="pdf-btn" id="download-pdf" type="button">Download PDF</button><p class="pdf-note" id="pdf-note">Run each Try activity before downloading. Check that your graphs and responses appear in the PDF.</p></section></main><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+# Graph 2: Which provider has the most scooters available on average? 
+# Use the original scooterData table, not the filtered cleanScooters table. 
+# First, use average_by() to summarize by provider_name.
+# Put provider_name on x and available_scooters on y.
+
+
+# Next, graph the new summary table with bar_graph().
+
+</textarea>
+<div class="r-output-wrap">
+  <div class="r-output-label">Output</div>
+  <pre class="r-output">R is still loading…</pre>
+  <div class="r-plots"></div>
+</div>
+</div>
+
+<label class="answer-label" for="answer5">
+  What do your two graphs reveal? 
+  Describe one pattern and one limitation.
+</label>
+<textarea class="student-answer" data-question="What did the graphs reveal? Give one pattern and one limitation." id="answer5" placeholder="Write 2–3 sentences…"></textarea>
+
+<div class="phase check">Check</div>
+<p>
+  Which provider has the most scooters available on average? 
+  How does that compare to the provider with the most trips? 
+  What might explain the difference?
+</p>
+</section>
+
+<section class="card" id="wrapup">
+  <h2>Final reflection</h2>
+  <p>
+    You started with thousands of observations, checked their quality, 
+    made a filtered table, summarized by company, and graphed patterns. 
+    Think about the difference between <em>having data</em> and 
+    <em>making a responsible claim from data</em>.
+  </p>
+  <label class="answer-label" for="final-reflection">
+    What is one insight you gained from this lab? 
+    In our next lab, we'll think about more relationships 
+    between variables and how to visualize them. 
+    If you had to predict how many trips a provider would have on a given day, 
+    what variable(s) in our dataset do you think would be most useful?
+  </label>
+  <textarea class="student-answer" data-question="Final reflection" id="final-reflection" placeholder="Write 2–4 sentences…"></textarea>
+</section>
+
+<section class="pdf-submit" id="submit-work">
+  <h2>Save your work</h2>
+  <p>Download a PDF containing your <strong>Try</strong> code, the output 
+    of each activity, your graphs, and written responses. Upload that PDF 
+    to the Day 2 assignment in Canvas.
+  </p>
+  <button class="pdf-btn" id="download-pdf" type="button">Download PDF</button>
+  <p class="pdf-note" id="pdf-note">Run each Try activity before downloading. Check that your graphs and responses appear in the PDF.</p>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 const pdfButton=document.getElementById('download-pdf');
 const pdfNote=document.getElementById('pdf-note');
@@ -1366,6 +1728,7 @@ pdfButton.addEventListener('click',()=>{
 
 
 </script>
+
 <script id="csv-data" type="text/plain">provider_name,day,year,month,day_of_week,trips,available_scooters,avg_distance,avg_duration
 Bird,2019-04-05,2019,4,Fri,2,,0.909996365,3539.5
 Bird,2019-04-06,2019,4,Sat,891,294,1.4467815891919191,664.7530864197531
