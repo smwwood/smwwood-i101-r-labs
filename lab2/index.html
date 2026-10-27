@@ -1532,12 +1532,12 @@ hist(clean_scooters$avg_distance)</textarea>
     <button class="r-run" disabled="" type="button">Run</button>
   </div>
   <textarea class="r-editor" spellcheck="false"># Total trips by scooter provider.
-providerTrips &lt;- total_by(clean_scooters, x = provider_name, y = trips)
-print(providerTrips)
+provider_trips &lt;- total_by(clean_scooters, x = provider_name, y = trips)
+print(provider_trips)
 
 # Average distance by scooter provider.
-providerDistances &lt;- average_by(clean_scooters, x = provider_name, y = avg_distance)
-print(providerDistances)</textarea>
+provider_distances &lt;- average_by(clean_scooters, x = provider_name, y = avg_distance)
+print(provider_distances)</textarea>
 <div class="r-output-wrap">
   <div class="r-output-label">Output</div>
   <pre class="r-output">R is still loading…</pre>
@@ -1547,7 +1547,7 @@ print(providerDistances)</textarea>
 
 <div class="phase try">Try</div>
 <p>
-  Create a new data frame named <code>providerDurations</code> that shows 
+  Create a new data frame named <code>provider_durations</code> that shows 
   the <strong>average daily duration</strong> for each provider.
 </p>
 
@@ -1558,7 +1558,7 @@ print(providerDistances)</textarea>
   </div>
   <textarea class="r-editor" spellcheck="false"># Use average_by() with clean_scooters.
 # Set x to provider_name and y to avg_duration.
-# Save the result as a variable named providerDurations.
+# Save the result as a variable named provider_durations.
 
 
 # Print the new summary table.
@@ -1599,7 +1599,7 @@ print(providerDistances)</textarea>
     <button class="r-run" disabled="" type="button">Run</button>
   </div>
   <textarea class="r-editor" spellcheck="false"># Bar graph: company on x-axis, total trips on y-axis.
-bar_graph(providerTrips, x = provider_name, y = trips)
+bar_graph(provider_trips, x = provider_name, y = trips)
 
 </textarea>
 <div class="r-output-wrap">
@@ -1612,7 +1612,7 @@ bar_graph(providerTrips, x = provider_name, y = trips)
 <div class="phase try">Try</div>
 <p>
   Make a bar graph of provider average distances using 
-  <code>providerDistances</code>. 
+  <code>provider_distances</code>. 
   Use only <code>bar_graph()</code>, as demonstrated above.
 </p>
 <div class="r-cell" data-submit="true">
@@ -1620,7 +1620,7 @@ bar_graph(providerTrips, x = provider_name, y = trips)
     <span class="r-cell-label">Your turn: two graphs</span>
     <button class="r-run" disabled="" type="button">Run</button>
   </div>
-  <textarea class="r-editor" spellcheck="false"># Use bar_graph() with the providerDistances subset of the data.
+  <textarea class="r-editor" spellcheck="false"># Use bar_graph() with the provider_distances subset of the data.
 # Put provider_name on x and avg_distance on y.
 
 
