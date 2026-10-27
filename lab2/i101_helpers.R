@@ -29,12 +29,21 @@ average_by <- function(data, x, y) {
   names(out) <- c(xn, yn)
   out
 }
+
 bar_graph <- function(data, x, y) {
   xn <- .column_name(substitute(x), data)
   yn <- .column_name(substitute(y), data)
+  
+  options(scipen = 999)
+  
   barplot(setNames(data[[yn]], as.character(data[[xn]])),
-          col="#3cc8e1", border=NA, las=1,
-          xlab=.pretty_label(xn), ylab=.pretty_label(yn), main="Compare groups")
+          col = "#3cc8e1", border = NA, las = 1,
+          xlab = .pretty_label(xn), ylab = .pretty_label(yn),
+          main = paste(.pretty_label(yn), "by", .pretty_label(xn)),
+          ylim = c(0, max(data[[yn]], na.rm = TRUE) * 1.1),
+          yaxs = "i")
+  
+  box(bty = "l")
 }
 scatter_plot <- function(data, x, y) {
   xn <- .column_name(substitute(x), data)
