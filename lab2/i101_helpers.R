@@ -22,7 +22,10 @@ total_by <- function(data, x, y) {
 average_by <- function(data, x, y) {
   xn <- .column_name(substitute(x), data)
   yn <- .column_name(substitute(y), data)
-  out <- aggregate(data[[yn]], by = setNames(list(data[[xn]]), xn), FUN = mean)
+  out <- aggregate(data[[yn]], 
+                   by = setNames(list(data[[xn]]), xn), 
+                   FUN = mean,
+                   na.rm = TRUE)
   names(out) <- c(xn, yn)
   out
 }
