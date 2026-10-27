@@ -1595,11 +1595,11 @@ print(provider_distances)</textarea>
 </p>
 <div class="r-cell" data-submit="false">
   <div class="r-cell-head">
-    <span class="r-cell-label">Example: bar graph of provider trip totals</span>
+    <span class="r-cell-label">Example: bar graph of provider average trip distances totals</span>
     <button class="r-run" disabled="" type="button">Run</button>
   </div>
-  <textarea class="r-editor" spellcheck="false"># Bar graph: company on x-axis, total trips on y-axis.
-bar_graph(provider_trips, x = provider_name, y = trips)
+  <textarea class="r-editor" spellcheck="false"># Bar graph: company on x-axis, avg_distance on y-axis.
+bar_graph(provider_distances, x = provider_name, y = avg_distance)
 
 </textarea>
 <div class="r-output-wrap">
@@ -1611,8 +1611,8 @@ bar_graph(provider_trips, x = provider_name, y = trips)
 
 <div class="phase try">Try</div>
 <p>
-  Make a bar graph of provider average distances using 
-  <code>provider_distances</code>. 
+  Make a bar graph of provider average number of daily trips using 
+  <code>provider_trips</code>. 
   Use only <code>bar_graph()</code>, as demonstrated above.
 </p>
 <div class="r-cell" data-submit="true">
@@ -1620,8 +1620,8 @@ bar_graph(provider_trips, x = provider_name, y = trips)
     <span class="r-cell-label">Your turn: two graphs</span>
     <button class="r-run" disabled="" type="button">Run</button>
   </div>
-  <textarea class="r-editor" spellcheck="false"># Use bar_graph() with the provider_distances subset of the data.
-# Put provider_name on x and avg_distance on y.
+  <textarea class="r-editor" spellcheck="false"># Use bar_graph() with the provider_trips subset of the data.
+# Put provider_name on x and trips on y.
 
 
 # Graph 2: Which provider has the most scooters available on average? 
