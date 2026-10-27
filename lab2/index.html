@@ -1424,7 +1424,7 @@ hist(scooterData$avg_distance, xlim = c(0, 20), breaks = 5000)</textarea>
   <textarea class="r-editor" spellcheck="false"># Step 1: filter_rows() keeps rows that meet a condition.
 # The condition is tested separately for each row.
 # Keep rows with an average distance of less than 20 miles.
-cleanScooters &lt;- filter_rows(scooterData, avg_distance &lt; 20)
+clean_scooters &lt;- filter_rows(scooterData, avg_distance &lt; 20)
 
 # How many observations (rows) did we start with?
 # And how many observations (rows) do we have after filtering?
@@ -1432,11 +1432,11 @@ cleanScooters &lt;- filter_rows(scooterData, avg_distance &lt; 20)
 print("Original number of rows:")
 print(nrow(scooterData))
 print("Filtered number of rows:")
-print(nrow(cleanScooters))
+print(nrow(clean_scooters))
 
 # Step 2: show the typical values using one-mile bins.
 # This graph only uses the filtered values (0–20 miles).
-hist(cleanScooters$avg_distance)</textarea>
+hist(clean_scooters$avg_distance)</textarea>
 <div class="r-output-wrap">
   <div class="r-output-label">Output</div>
   <pre class="r-output">R is still loading…</pre>
@@ -1446,11 +1446,11 @@ hist(cleanScooters$avg_distance)</textarea>
 
 <div class="phase try">Try</div>
 <p>
-  Compare the <strong>original dataset, <code>scooterData</code>
-  </strong>, with the <strong>filtered dataset, <code>cleanScooters</code></strong>. 
-  Use the familiar <code>mean()</code> and <code>median()</code> functions on the 
-  <code>avg_distance</code> column of each table. Write the code yourself using the 
-  comments below.
+  Compute the <code>mean()</code>, <code>median()</code>, and
+  <code>max()</code> avg_distance of the <strong>filtered dataset.</strong> 
+  Then compare those values to the same statistics you already 
+  computed above for the <strong>original dataset</strong>. 
+  Write the code yourself using the comments below.
 </p>
 
 <div class="r-cell" data-submit="true">
@@ -1465,7 +1465,7 @@ hist(cleanScooters$avg_distance)</textarea>
 # Find the median of avg_distance.
 
 
-# In the cleaned dataset, cleanScooters:
+# In the cleaned dataset, clean_scooters:
 # Find the mean of avg_distance.
 
 
@@ -1532,11 +1532,11 @@ hist(cleanScooters$avg_distance)</textarea>
     <button class="r-run" disabled="" type="button">Run</button>
   </div>
   <textarea class="r-editor" spellcheck="false"># Total trips by scooter provider.
-providerTrips &lt;- total_by(cleanScooters, x = provider_name, y = trips)
+providerTrips &lt;- total_by(clean_scooters, x = provider_name, y = trips)
 print(providerTrips)
 
 # Average distance by scooter provider.
-providerDistances &lt;- average_by(cleanScooters, x = provider_name, y = avg_distance)
+providerDistances &lt;- average_by(clean_scooters, x = provider_name, y = avg_distance)
 print(providerDistances)</textarea>
 <div class="r-output-wrap">
   <div class="r-output-label">Output</div>
@@ -1556,7 +1556,7 @@ print(providerDistances)</textarea>
     <span class="r-cell-label">Your turn: summarize durations by provider</span>
     <button class="r-run" disabled="" type="button">Run</button>
   </div>
-  <textarea class="r-editor" spellcheck="false"># Use average_by() with cleanScooters.
+  <textarea class="r-editor" spellcheck="false"># Use average_by() with clean_scooters.
 # Set x to provider_name and y to avg_duration.
 # Save the result as a variable named providerDurations.
 
@@ -1625,7 +1625,7 @@ bar_graph(providerTrips, x = provider_name, y = trips)
 
 
 # Graph 2: Which provider has the most scooters available on average? 
-# Use the original scooterData table, not the filtered cleanScooters table. 
+# Use the original scooterData table, not the filtered clean_scooters table. 
 # First, use average_by() to summarize by provider_name.
 # Put provider_name on x and available_scooters on y.
 
