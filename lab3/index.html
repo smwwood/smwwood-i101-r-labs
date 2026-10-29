@@ -1078,7 +1078,7 @@ abline(lm(avg_duration ~ avg_distance, data = clean_scooters), col = "magenta", 
 monthly_trips <- total_by(clean_scooters, x = c(provider_name, year_month), y = trips)
 
 # Let's take a look at what our summarized data looks like
-monthly_trips
+print(head(monthly_trips))
 
 # Now we can create a line graph using the summarized data
 # Our x-axis will be the month, our y-axis will be the number of trips, 
@@ -1090,30 +1090,69 @@ line_graph(monthly_trips, x = year_month, y = trips, group = provider_name)</tex
                         <div class="r-plots"></div>
                     </div>
                 </div>
+                
+<div class="callout">
+    <h3>Investigate: What's going on with Lime?</h3>
+
+    <p>
+        Notice the enormous spike in Lime rides during fall 2019!
+    </p>
+
+    <p>
+        When you see something surprising in a graph, don't automatically
+        assume it's real—or that it's an error. <strong>Investigate!</strong>
+        Unusual values can reveal data problems, but they can also tell
+        us something interesting about the real world.
+    </p>
+
+    <p>
+        In fact, a
+        <a href="https://bsquarebulletin.com/data-notebook-bloomingtons-electric-scooter-ridership-at-70-percent-of-pre-pandemic-levels/"
+            target="_blank" rel="noopener noreferrer">
+            local news article about Bloomington's scooter ridership
+        </a>
+        reports that ridership was exceptionally high in fall 2019,
+        before dropping during the COVID-19 pandemic.
+    </p>
+
+    <p>
+        <strong>Look back at your graph:</strong>
+        Notice that Lime never returned to its pre-pandemic peak.
+        Consider what else might we need to investigate before explaining why.
+    </p>
+</div>
+
+                
                 <div class="phase try">Try</div>
-                <p>Plot the <strong>total number of trips per day during May 2019</strong>. Change the month in the
-                    example above, then summarize and plot.</p>
+                <p>
+                    In the graph above, we looked at the number of trips by provider over time.
+                    A reasonable hypothesis is that scooter availability would show a similar pattern
+                    because more available scooters would likely lead to more trips and also because
+                    scooter companies may offer fewer scooters when demand is low.
+                </p>
                 <div class="r-cell" data-submit="true">
-                    <div class="r-cell-head"><span class="r-cell-label">Your turn: a line graph</span><button
-                            class="r-run" disabled type="button">Run</button></div><textarea class="r-editor"
-                        spellcheck="false"># 1. Keep May 2019 observations.
-# 2. Total trips by day.
-# 3. Use line_graph() to show changes through time.
+                    <div class="r-cell-head">
+                        <span class="r-cell-label">Your turn: a line graph</span>
+                        <button class="r-run" disabled type="button">Run</button>
+                    </div><textarea class="r-editor" spellcheck="false"># First, you need to summarize your data by provider AND month
+# Recall that your dependent (y) variable is now the number of available scooters.
+# In the dataset, this variable is called "available_scooters".
+# Use the helper function total_by() to summarize the data by provider and month.
+# If you need guidance, use the example provided in the previous exercise.
+
+# Take a look at the summarized data to ensure it makes sense before plotting.
+
+# Create a line graph to visualize the changes in available scooters over time by provider.
 </textarea>
+
                     <div class="r-output-wrap">
                         <div class="r-output-label">Output</div>
                         <pre class="r-output">R is still loading…</pre>
                         <div class="r-plots"></div>
                     </div>
-                </div><label class="answer-label" for="line-answer">Describe one increase, decrease, or fluctuation you
-                    observe.</label><textarea class="student-answer" id="line-answer"
-                    data-question="What change over time did you notice in the May 2019 scooter trips?"
-                    placeholder="I notice..."></textarea>
-                <div class="phase check">Check</div>
-                <p>Are dates on the horizontal axis in chronological order? Does connecting nearby dates help you see a
-                    trend?</p>
-            </div>
+                </div>
         </section>
+
         <section id="challenge">
             <div class="section-marker">
                 <div class="part">Part 5 · ~18 minutes</div>
@@ -1130,17 +1169,16 @@ line_graph(monthly_trips, x = year_month, y = trips, group = provider_name)</tex
                     </label><label class="mini-card"><input type="radio" name="challenge" value="B"> <strong>B · Explore
                             a relationship</strong>
                         <p>Do days with more trips tend to have a different <em>average trip distance</em>?</p><span
-                            class="small">Hint: two quantitative variables.</span>
+                            class="small">Hint: two quantitative variables. I recommend using provider_name as a group here!</span>
                     </label><label class="mini-card"><input type="radio" name="challenge" value="C"> <strong>C · Explore
                             a trend</strong>
-                        <p>How did the number of <em>available scooters</em> change from day to day during June 2019?
-                        </p><span class="small">Hint: time and a quantitative summary.</span>
+                        <p>How did the <em>total distance</em> change from month to month?
+                        </p><span class="small">Hint: time and a quantitative summary. I recommend including provider_name as a group here!</span>
                     </label></div>
-                <p class="small">For C, total available scooters across providers by day, then use a line graph. Daily
-                    totals describe scooters reported available across providers; they are not individual unique
-                    scooters.</p><label class="answer-label" for="challenge-plan">1. Which question did you choose?
-                    Identify your variables and their types. Which graph fits, and why?</label><textarea
-                    class="student-answer" id="challenge-plan"
+                
+                    <label class="answer-label" for="challenge-plan">1. Which question did you choose?
+                    Identify your variables and their types. Which graph fits, and why?</label>
+                    <textarea class="student-answer" id="challenge-plan"
                     data-question="Final challenge: chosen question, variables/types, graph type, and justification."
                     placeholder="I chose... Because..."></textarea>
                 <div class="phase try">Make your graph</div>
@@ -1155,10 +1193,10 @@ line_graph(monthly_trips, x = year_month, y = trips, group = provider_name)</tex
                         <pre class="r-output">R is still loading…</pre>
                         <div class="r-plots"></div>
                     </div>
-                </div><label class="answer-label" for="challenge-interpret">2. What does your graph tell you? What is
-                    one thing it <em>can't</em> tell you?</label><textarea class="student-answer"
+                </div>
+                <label class="answer-label" for="challenge-interpret">2. What is one thing your graph tells you?</label><textarea class="student-answer"
                     id="challenge-interpret" data-question="Final challenge: interpretation and one limitation."
-                    placeholder="My graph suggests... It cannot tell me..."></textarea>
+                    placeholder="My graph suggests..."></textarea>
                 <div class="phase check">Check</div>
                 <p>Your graph should match your variables and question. Make sure it actually rendered, check axis
                     labels, and describe a real pattern rather than simply naming the graph type.</p>
@@ -1192,9 +1230,11 @@ line_graph(monthly_trips, x = year_month, y = trips, group = provider_name)</tex
                     '../lab3/i101_helpers_lab3.R',
                     'https://raw.githubusercontent.com/smwwood/smwwood-i101-r-labs/main/lab3/i101_helpers_lab3.R'
                 ]);
-                await webR.FS.writeFile('/home/web_user/scooter_activity_daily.csv', new TextEncoder().encode(csv)); await webR.FS.writeFile('/home/web_user/i101_helpers_lab3.R', new TextEncoder().encode(helpers)); await webR.evalRVoid(`scooter_data <- read.csv('/home/web_user/scooter_activity_daily.csv',stringsAsFactors=FALSE)
-source('/home/web_user/i101_helpers.R')
-clean_scooters <- filter_rows(scooter_data, avg_distance < 20 & avg_duration < 10000)`); await webR.evalRVoid(`line_graph <- function(data,x,y){xn <- deparse(substitute(x));yn <- deparse(substitute(y));if(!xn %in% names(data) || !yn %in% names(data))stop('Column not found');d <- data[order(as.Date(data[[xn]])),,drop=FALSE];plot(as.Date(d[[xn]]),d[[yn]],type='o',pch=16,lwd=2,col='#1155cc',cex=.55,xlab='Date',ylab=tools::toTitleCase(gsub('_',' ',yn)),main=paste(tools::toTitleCase(gsub('_',' ',yn)),'over time'))}`); status.classList.add('ready'); statusText.textContent = 'R is ready. The scooter dataset and graph helpers are loaded; code boxes share one R session.'; buttons.forEach(button => { button.disabled = false; button.addEventListener('click', () => runCell(button.closest('.r-cell'), button)); }); document.querySelectorAll('.r-output').forEach(o => o.textContent = 'Ready.');
+                await webR.FS.writeFile('/home/web_user/scooter_activity_daily.csv', new TextEncoder().encode(csv)); 
+                await webR.FS.writeFile('/home/web_user/i101_helpers_lab3.R', new TextEncoder().encode(helpers)); 
+                await webR.evalRVoid(`scooter_data <- read.csv('/home/web_user/scooter_activity_daily.csv',stringsAsFactors=FALSE)
+source('/home/web_user/i101_helpers_lab3.R')
+clean_scooters <- filter_rows(scooter_data, avg_distance < 20 & avg_duration < 10000)`); status.classList.add('ready'); statusText.textContent = 'R is ready. The scooter dataset and graph helpers are loaded; code boxes share one R session.'; buttons.forEach(button => { button.disabled = false; button.addEventListener('click', () => runCell(button.closest('.r-cell'), button)); }); document.querySelectorAll('.r-output').forEach(o => o.textContent = 'Ready.');
             } catch (err) { status.classList.add('error'); statusText.textContent = 'R could not start: ' + (err?.message || String(err)) + '. Serve this page via GitHub Pages or a local web server and check your internet connection.'; console.error(err); }
         } init();
     </script>
