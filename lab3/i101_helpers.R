@@ -131,3 +131,66 @@ scatter_plot <- function(data, x, y, group = NULL) {
   }
 }
 
+
+line_graph <- function(data, x, y, group = NULL) {
+  xn <- .column_name(substitute(x), data)
+  yn <- .column_name(substitute(y), data)
+  
+  # Put dates/months in chronological order
+  x_values <- data[[xn]]
+  
+  # Convert YYYY-MM strings to dates when needed
+  if (is.character(x_values) &&
+      all(grepl("^\\d{4}-\\d{2}$", x_values[!is.na(x_values)]))) {
+    x_values <- as.Date(paste0(x_values, "-01"))
+  }
+  
+  # Sort observations by x-axis values
+  order_rows <- order(x_values)
+  data <- data[order_rows, , drop = FALSE]
+  x_values <- x_values[order_rows]
+  
+  # Set up the graph
+  plot(x_values, data[[yn]],
+       type = "n",
+       xlab = .pretty_label(xn),
+       ylab = .pretty_label(yn),
+       main = paste(.pretty_label(yn), "over", .pretty_label(xn)),
+       ylim = c(0, max(data[[yn]], na.rm = TRUE) * 1.1),
+       yaxs = "i")
+  
+  if (missing(group)) {
+    
+    # One line
+    lines(x_values, data[[yn]],
+          col = "#1155cc", lwd = 2.5)
+    
+  } else {
+    
+    # Separate line for each group
+    gn <- .column_name(substitute(group), data)
+    groups <- factor(data[[gn]])
+    
+    colors <- c("#1155cc", "#cf2f7b", "#3cc8e1",
+                "#8fd400", "#f0ad4e")
+    
+    group_colors <- rep(colors, length.out = nlevels(groups))
+    
+    for (i in seq_along(levels(groups))) {
+      selected <- groups == levels(groups)[i]
+      
+      lines(x_values[selected], data[[yn]][selected],
+            col = group_colors[i], lwd = 2.5)
+    }
+    
+    legend("topright",
+           legend = levels(groups),
+           col = group_colors,
+           lwd = 2.5,
+           bty = "n")
+  }
+  
+  box(bty = "l")
+}
+
+
