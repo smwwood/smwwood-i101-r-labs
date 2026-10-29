@@ -1,37 +1,1197 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>INFO-I101 — Making Relationships Visible</title>
-<style>
-:root{--cobalt:#1155cc;--lime:#8fd400;--magenta:#cf2f7b;--aqua:#3cc8e1;--ink:#18181b;--muted:#5c6470;--line:#dce0e6;--bg:#fcfcfa;--soft:#f6f7f9;--radius:18px;--shadow:0 10px 28px rgba(17,24,39,.07);--maxw:1080px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Avenir,Aptos,"Segoe UI",Arial,sans-serif;line-height:1.55}.wrap{max-width:var(--maxw);margin:auto;padding:0 28px 70px}.hero{padding:40px 0 26px;border-bottom:1px solid var(--line)}.eyebrow,.part{color:var(--cobalt);font-weight:850;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem}h1{font-size:clamp(2.4rem,5vw,4rem);line-height:1.04;letter-spacing:-.035em;margin:10px 0}h2{font-size:clamp(1.7rem,3vw,2.5rem);line-height:1.12;margin:6px 0 12px}h3{font-size:1.3rem;margin:4px 0 10px}p{margin:8px 0 14px}.lede{max-width:760px;color:var(--muted);font-size:1.12rem}.jump{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.jump a{color:var(--ink);background:white;border:1px solid var(--line);border-radius:30px;text-decoration:none;padding:8px 12px;font-size:.9rem;font-weight:750}.section-marker{margin:48px 0 18px;border-top:8px solid var(--cobalt);padding-top:9px}.section-marker p{color:var(--muted)}.card{background:white;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin:18px 0 24px}.callout{background:#eff8ff;border-left:6px solid var(--cobalt);border-radius:12px;padding:15px 18px;margin:17px 0}.ta-cue{background:#fff5fa;border-left:4px solid var(--magenta);border-radius:10px;padding:12px 16px;margin:15px 0}.phase{display:inline-block;font-size:.75rem;letter-spacing:.07em;font-weight:900;text-transform:uppercase;padding:6px 12px;border-radius:30px;margin:12px 0 7px}.watch{color:white;background:var(--cobalt)}.try{color:#073b48;background:#dff7fc}.check{color:#4d2a65;background:#f6ebfd}.r-cell{border:1px solid #cfdae6;border-radius:14px;overflow:hidden;margin:12px 0 20px}.r-cell-head{background:#edf2f8;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;gap:12px}.r-cell-label{font-weight:750}.r-run,.deck-button,.primary-btn{border:0;border-radius:9px;padding:9px 17px;background:var(--cobalt);color:white;font-weight:800;cursor:pointer}.r-run:disabled{opacity:.5;cursor:wait}.r-editor{display:block;width:100%;min-height:110px;resize:vertical;border:0;padding:15px 18px;line-height:1.55;font-size:.98rem;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}.r-output-wrap{border-top:1px solid var(--line);background:#f8fafc;padding:13px 18px}.r-output-label{font-weight:800;font-size:.77rem;color:var(--muted);text-transform:uppercase}.r-output{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.9rem;margin:6px 0;font-family:ui-monospace,monospace}.r-plots{display:flex;flex-wrap:wrap;gap:12px}.r-plots canvas{max-width:100%;height:auto;background:white;border:1px solid var(--line);border-radius:8px}.student-answer{display:block;width:100%;border:1px solid #b9c3d0;border-radius:10px;padding:12px;font-size:1rem;font-family:inherit;min-height:82px;margin:6px 0 15px}.answer-label{display:block;font-weight:750;margin-top:16px}.status{padding:12px 16px;margin:18px 0;border-radius:12px;background:#fff4d8}.status.ready{background:#e3f7e7}.status.error{background:#ffe4e4}.teaching-deck{border:1px solid #cdd9eb;border-radius:22px;overflow:hidden;background:white;box-shadow:var(--shadow);margin:17px 0}.deck-stage{padding:34px 30px;background:linear-gradient(140deg,#eef5ff,#fff,#edfbfc);min-height:325px}.deck-kicker{font-weight:900;color:var(--cobalt);font-size:.78rem;letter-spacing:.08em}.deck-slide{display:none}.deck-slide.active{display:block}.big-word{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;font-weight:900;letter-spacing:-.04em;margin:12px 0}.deck-desc{font-size:1.13rem;max-width:720px}.chip-row{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 12px}.chip{padding:12px 18px;border:2px solid var(--cobalt);color:var(--cobalt);background:#fff;border-radius:13px;font-size:1.17rem;font-weight:850}.chip.number{border-color:var(--magenta);color:var(--magenta)}.chip.ordered{border-color:#558c09;color:#477800}.deck-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 20px;background:white;border-top:1px solid var(--line)}.deck-footer button:disabled{opacity:.35}.deck-count{color:var(--muted);font-size:.9rem;font-weight:700}.viz{background:linear-gradient(135deg,#eaf1ff,#fff);border:1px solid var(--line);padding:22px;border-radius:17px}.viz svg{width:100%;height:auto;max-height:350px}.model-controls{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:10px}.model-note{text-align:center;font-size:.96rem;min-height:2em}.placeholder{border:2px dashed #91b7d8;border-radius:16px;min-height:230px;background:repeating-linear-gradient(-45deg,#f0f8ff,#f0f8ff 13px,#fff 13px,#fff 26px);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}.placeholder strong{font-size:1.25rem;display:block}.placeholder code{font-size:.88rem}.sample-img{display:block;width:100%;max-height:370px;object-fit:contain}.graph-example{background:#f5faff;padding:18px;border-radius:14px;margin:16px 0}.graph-example img:not([src]){display:none}.graph-example img:not([src])+.placeholder{display:flex}.graph-example img[src]+.placeholder{display:none}.small{font-size:.91rem;color:var(--muted)}.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.mini-card{padding:15px;background:#f7f9ff;border-radius:13px}.pdf-submit{border:2px solid var(--cobalt);background:#edf5ff;border-radius:18px;padding:22px;margin-top:28px}.pdf-note{color:var(--muted);font-size:.88rem}code{background:#f2f4f8;border-radius:4px;padding:1px 4px}pre code{background:transparent}@media(max-width:690px){.wrap{padding:0 14px 50px}.card{padding:17px}.two{grid-template-columns:1fr}.deck-stage{padding:23px 19px;min-height:300px}.chip{font-size:.95rem}.deck-footer{padding:12px}.jump a{font-size:.8rem}}@media print{.r-run,.deck-footer,.jump,.model-controls,#download-pdf{display:none!important}.deck-slide{display:block!important;page-break-inside:avoid}.card,.teaching-deck{box-shadow:none;break-inside:avoid}}
-</style></head><body><main class="wrap">
-<header class="hero" id="top"><span class="eyebrow">INFO-I101 · R Lab 3 · 75 minutes</span><h1>Making Relationships Visible</h1><p class="lede">Data can tell stories—if we choose the right way to show it. Today we'll investigate variables, discover patterns, and make bar graphs, scatterplots, and line graphs in R.</p><nav class="jump"><a href="#models">The big idea</a><a href="#variables">Variable types</a><a href="#bars">Bar graphs</a><a href="#scatters">Scatterplots</a><a href="#lines">Line graphs</a><a href="#challenge">Your challenge</a><a href="#submit-work">Submit</a></nav><div class="status" id="r-status"><strong id="r-status-text">Starting R…</strong></div><p class="small">All R code boxes share a single R session. The scooter dataset and helper functions load automatically.</p></header>
-<section id="models"><div class="section-marker"><div class="part">Opening · ~3 minutes</div><h2>Can you see the model?</h2><p>From lecture to lab: models help us describe the world.</p></div><div class="card"><p>In lecture, we've been thinking about <strong>models</strong>: simplified representations that help us understand the world. A mathematical model can describe a relationship using an equation. But first, we can <strong>look for relationships visually</strong>.</p><div class="viz"><svg viewBox="0 0 720 320" role="img" aria-label="Illustrative scatterplot of two variables with optional fitted line"><g stroke="#bdcde4" stroke-width="1"><path d="M75 50V267H667" fill="none" stroke="#54637c" stroke-width="2"/><path d="M75 215H667M75 164H667M75 113H667M75 62H667" stroke-dasharray="4 8"/></g><g fill="#1155cc" opacity=".83"><circle cx="111" cy="240" r="8"/><circle cx="150" cy="220" r="8"/><circle cx="191" cy="231" r="8"/><circle cx="235" cy="195" r="8"/><circle cx="277" cy="180" r="8"/><circle cx="315" cy="198" r="8"/><circle cx="354" cy="160" r="8"/><circle cx="399" cy="141" r="8"/><circle cx="439" cy="160" r="8"/><circle cx="486" cy="117" r="8"/><circle cx="530" cy="104" r="8"/><circle cx="570" cy="116" r="8"/><circle cx="614" cy="74" r="8"/></g><path id="model-line" d="M99 244L640 62" stroke="#cf2f7b" stroke-width="7" stroke-linecap="round" fill="none" visibility="hidden"/><text x="359" y="308" text-anchor="middle" fill="#384861" font-size="19">Variable X</text><text x="24" y="162" text-anchor="middle" transform="rotate(-90 24 162)" fill="#384861" font-size="19">Variable Y</text></svg><div class="model-controls"><button id="toggle-model" class="primary-btn" type="button" aria-pressed="false">Show model</button></div><p id="model-note" class="model-note">Each dot is an observation. What pattern do you notice?</p></div><div class="ta-cue"><strong>TA discussion:</strong> What do the dots represent? What does the line add? Does the model perfectly represent every observation?</div><div class="callout"><strong>Big idea:</strong> A graph helps us notice patterns. A model is one way of summarizing or explaining those patterns. <strong>To choose the right graph, we first need to understand our variables.</strong></div></div></section>
-<section id="variables"><div class="section-marker"><div class="part">Part 1 · ~12 minutes</div><h2>Understanding variables</h2><p>What kinds of information do our columns represent?</p></div><div class="card"><p>Remember from Lab 1 that R stores different kinds of <em>values</em>, like numbers and text? Now we'll classify variables by <strong>what their values mean</strong>.</p><div class="teaching-deck" data-deck><div class="deck-stage"><div class="deck-slide active"><span class="deck-kicker">01 / THE QUESTION</span><div class="big-word">What kind of variable is it?</div><p class="deck-desc">A column might contain words or numbers—but the important question is what those values <strong>represent</strong>.</p><div class="chip-row"><span class="chip">Provider</span><span class="chip number">Trips</span><span class="chip ordered">Rating</span></div></div><div class="deck-slide"><span class="deck-kicker">02 / CATEGORICAL</span><div class="big-word" style="color:var(--cobalt)">Which group?</div><p class="deck-desc">A <strong>categorical</strong> variable places observations into groups. The categories don't have to be numbers.</p><div class="chip-row"><span class="chip">Bird</span><span class="chip">Lime</span><span class="chip">Veo</span></div><p><strong>Scooter example:</strong> <code>provider_name</code>.</p></div><div class="deck-slide"><span class="deck-kicker">03 / QUANTITATIVE</span><div class="big-word" style="color:var(--magenta)">How many? How much?</div><p class="deck-desc">A <strong>quantitative</strong> variable records a count or measurement. Numerical differences have meaning.</p><div class="chip-row"><span class="chip number">12 trips</span><span class="chip number">28 trips</span><span class="chip number">43 trips</span></div><p><strong>Scooter example:</strong> <code>trips</code> or <code>avg_distance</code>.</p></div><div class="deck-slide"><span class="deck-kicker">04 / ORDINAL</span><div class="big-word" style="color:#558c09">Which level?</div><p class="deck-desc">An <strong>ordinal</strong> variable is a useful hybrid: its values are <strong>categories with a meaningful order</strong>, but the gaps between levels aren't necessarily equal.</p><div class="chip-row"><span class="chip ordered">Low</span><span class="chip ordered">Medium</span><span class="chip ordered">High</span></div><p><strong>Example:</strong> a survey rating of experience: beginner, intermediate, advanced.</p></div><div class="deck-slide"><span class="deck-kicker">05 / WATCH OUT</span><div class="big-word">Numbers don't always mean quantity.</div><p class="deck-desc">A ZIP code or student ID might be stored using digits, but it labels a category or identifies a record. We wouldn't calculate its average to answer a meaningful question.</p><div class="chip-row"><span class="chip">47401</span><span class="chip">47403</span><span class="chip">47408</span></div><p><strong>Ask:</strong> Are these quantities, labels, or ordered levels?</p></div></div><div class="deck-footer"><button type="button" class="deck-button deck-prev">← Back</button><span class="deck-count" aria-live="polite">1 of 5</span><button type="button" class="deck-button deck-next">Next →</button></div></div><div class="phase try">Try</div><p>Classify these columns from our scooter dataset: <code>provider_name</code>, <code>trips</code>, <code>avg_distance</code>, <code>day_of_week</code>. Is each categorical, quantitative, or ordinal? Explain one of your choices.</p><label class="answer-label" for="variable-answer">Your classifications and explanation</label><textarea class="student-answer" id="variable-answer" data-question="Classify provider_name, trips, avg_distance, and day_of_week. Explain one choice." placeholder="provider_name: ..."></textarea><div class="phase check">Check</div><p><code>provider_name</code> and <code>day_of_week</code> are categorical; <code>trips</code> and <code>avg_distance</code> are quantitative. Days have a familiar sequence, but here they identify repeating weekday categories rather than a numerical amount.</p></div></section>
-<section id="bars"><div class="section-marker"><div class="part">Part 2 · ~8 minutes</div><h2>Bar graphs: compare categories</h2><p>You know this one! Let's connect the graph to its variable types.</p></div><div class="card"><div class="graph-example"><h3>Welcome survey example</h3><p class="small">Instructor will add an anonymous, aggregated graph of a categorical survey question.</p><img class="sample-img" data-placeholder-image src="assets/welcome_bar_graph.png" alt="Instructor-supplied welcome survey bar graph" onerror="this.removeAttribute('src')"><div class="placeholder"><div><strong>Welcome survey: bar graph</strong><p>Anonymous class results go here</p><code>assets/welcome_bar_graph.png</code></div></div></div><p><strong>What to notice:</strong> Categories on one axis, a numerical value (such as a count or average) on the other. Bar height helps us compare categories. The same principles of visual design from lecture—clear labels, readable contrast, and purposeful color—apply here.</p><div class="phase watch">Watch</div><p>We've already used <code>average_by()</code> and <code>bar_graph()</code>. The TA shows how to summarize trips by provider and graph them.</p><div class="r-cell" data-submit="false"><div class="r-cell-head"><span class="r-cell-label">Watch: trips by provider</span><button class="r-run" disabled type="button">Run</button></div><textarea class="r-editor" spellcheck="false">provider_trips <- average_by(clean_scooters, provider_name, trips)
-bar_graph(provider_trips, x = provider_name, y = trips)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase try">Try</div><p>Create a bar graph comparing the <strong>average number of available scooters</strong> across providers. Start by summarizing with <code>average_by()</code>.</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: a bar graph</span><button class="r-run" disabled type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># 1. Summarize available_scooters by provider_name.
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>INFO-I101 — Making Relationships Visible</title>
+    <style>
+        :root {
+            --cobalt: #1155cc;
+            --lime: #8fd400;
+            --magenta: #cf2f7b;
+            --aqua: #3cc8e1;
+            --ink: #18181b;
+            --muted: #5c6470;
+            --line: #dce0e6;
+            --bg: #fcfcfa;
+            --soft: #f6f7f9;
+            --radius: 18px;
+            --shadow: 0 10px 28px rgba(17, 24, 39, .07);
+            --maxw: 1080px
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: Avenir, Aptos, "Segoe UI", Arial, sans-serif;
+            line-height: 1.55
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: auto;
+            padding: 0 28px 70px
+        }
+
+        .hero {
+            padding: 40px 0 26px;
+            border-bottom: 1px solid var(--line)
+        }
+
+        .eyebrow,
+        .part {
+            color: var(--cobalt);
+            font-weight: 850;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            font-size: .8rem
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 1.04;
+            letter-spacing: -.035em;
+            margin: 10px 0
+        }
+
+        h2 {
+            font-size: clamp(1.7rem, 3vw, 2.5rem);
+            line-height: 1.12;
+            margin: 6px 0 12px
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 4px 0 10px
+        }
+
+        p {
+            margin: 8px 0 14px
+        }
+
+        .lede {
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 1.12rem
+        }
+
+        .jump {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 20px 0
+        }
+
+        .jump a {
+            color: var(--ink);
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 30px;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-size: .9rem;
+            font-weight: 750
+        }
+
+        .section-marker {
+            margin: 48px 0 18px;
+            border-top: 8px solid var(--cobalt);
+            padding-top: 9px
+        }
+
+        .section-marker p {
+            color: var(--muted)
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+            margin: 18px 0 24px
+        }
+
+        .callout {
+            background: #eff8ff;
+            border-left: 6px solid var(--cobalt);
+            border-radius: 12px;
+            padding: 15px 18px;
+            margin: 17px 0
+        }
+
+        .ta-cue {
+            background: #fff5fa;
+            border-left: 4px solid var(--magenta);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin: 15px 0
+        }
+
+        .phase {
+            display: inline-block;
+            font-size: .75rem;
+            letter-spacing: .07em;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            border-radius: 30px;
+            margin: 12px 0 7px
+        }
+
+        .watch {
+            color: white;
+            background: var(--cobalt)
+        }
+
+        .try {
+            color: #073b48;
+            background: #dff7fc
+        }
+
+        .check {
+            color: #4d2a65;
+            background: #f6ebfd
+        }
+
+        .r-cell {
+            border: 1px solid #cfdae6;
+            border-radius: 14px;
+            overflow: hidden;
+            margin: 12px 0 20px
+        }
+
+        .r-cell-head {
+            background: #edf2f8;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            gap: 12px
+        }
+
+        .r-cell-label {
+            font-weight: 750
+        }
+
+        .r-run,
+        .deck-button,
+        .primary-btn {
+            border: 0;
+            border-radius: 9px;
+            padding: 9px 17px;
+            background: var(--cobalt);
+            color: white;
+            font-weight: 800;
+            cursor: pointer
+        }
+
+        .r-run:disabled {
+            opacity: .5;
+            cursor: wait
+        }
+
+        .r-editor {
+            display: block;
+            width: 100%;
+            min-height: 110px;
+            resize: vertical;
+            border: 0;
+            padding: 15px 18px;
+            line-height: 1.55;
+            font-size: .98rem;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            tab-size: 2
+        }
+
+        .r-output-wrap {
+            border-top: 1px solid var(--line);
+            background: #f8fafc;
+            padding: 13px 18px
+        }
+
+        .r-output-label {
+            font-weight: 800;
+            font-size: .77rem;
+            color: var(--muted);
+            text-transform: uppercase
+        }
+
+        .r-output {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            font-size: .9rem;
+            margin: 6px 0;
+            font-family: ui-monospace, monospace
+        }
+
+        .r-plots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .r-plots canvas {
+            max-width: 100%;
+            height: auto;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 8px
+        }
+
+        .student-answer {
+            display: block;
+            width: 100%;
+            border: 1px solid #b9c3d0;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            min-height: 82px;
+            margin: 6px 0 15px
+        }
+
+        .answer-label {
+            display: block;
+            font-weight: 750;
+            margin-top: 16px
+        }
+
+        .status {
+            padding: 12px 16px;
+            margin: 18px 0;
+            border-radius: 12px;
+            background: #fff4d8
+        }
+
+        .status.ready {
+            background: #e3f7e7
+        }
+
+        .status.error {
+            background: #ffe4e4
+        }
+
+        .teaching-deck {
+            border: 1px solid #cdd9eb;
+            border-radius: 22px;
+            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow);
+            margin: 17px 0
+        }
+
+        .deck-stage {
+            padding: 34px 30px;
+            background: linear-gradient(140deg, #eef5ff, #fff, #edfbfc);
+            min-height: 325px
+        }
+
+        .deck-kicker {
+            font-weight: 900;
+            color: var(--cobalt);
+            font-size: .78rem;
+            letter-spacing: .08em
+        }
+
+        .deck-slide {
+            display: none
+        }
+
+        .deck-slide.active {
+            display: block
+        }
+
+        .big-word {
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            line-height: 1.05;
+            font-weight: 900;
+            letter-spacing: -.04em;
+            margin: 12px 0
+        }
+
+        .deck-desc {
+            font-size: 1.13rem;
+            max-width: 720px
+        }
+
+        .chip-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 22px 0 12px
+        }
+
+        .chip {
+            padding: 12px 18px;
+            border: 2px solid var(--cobalt);
+            color: var(--cobalt);
+            background: #fff;
+            border-radius: 13px;
+            font-size: 1.17rem;
+            font-weight: 850
+        }
+
+        .chip.number {
+            border-color: var(--magenta);
+            color: var(--magenta)
+        }
+
+        .chip.ordered {
+            border-color: #558c09;
+            color: #477800
+        }
+
+        .deck-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid var(--line)
+        }
+
+        .deck-footer button:disabled {
+            opacity: .35
+        }
+
+        .deck-count {
+            color: var(--muted);
+            font-size: .9rem;
+            font-weight: 700
+        }
+
+        .viz {
+            background: linear-gradient(135deg, #eaf1ff, #fff);
+            border: 1px solid var(--line);
+            padding: 22px;
+            border-radius: 17px
+        }
+
+        .viz svg {
+            width: 100%;
+            height: auto;
+            max-height: 350px
+        }
+
+        .model-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px
+        }
+
+        .model-note {
+            text-align: center;
+            font-size: .96rem;
+            min-height: 2em
+        }
+
+        .placeholder {
+            border: 2px dashed #91b7d8;
+            border-radius: 16px;
+            min-height: 230px;
+            background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 13px, #fff 13px, #fff 26px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px
+        }
+
+        .placeholder strong {
+            font-size: 1.25rem;
+            display: block
+        }
+
+        .placeholder code {
+            font-size: .88rem
+        }
+
+        .sample-img {
+            display: block;
+            width: 100%;
+            max-height: 370px;
+            object-fit: contain
+        }
+
+        .graph-example {
+            background: #f5faff;
+            padding: 18px;
+            border-radius: 14px;
+            margin: 16px 0
+        }
+
+        .graph-example img:not([src]) {
+            display: none
+        }
+
+        .graph-example img:not([src])+.placeholder {
+            display: flex
+        }
+
+        .graph-example img[src]+.placeholder {
+            display: none
+        }
+
+        .small {
+            font-size: .91rem;
+            color: var(--muted)
+        }
+
+        .two {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px
+        }
+
+        .mini-card {
+            padding: 15px;
+            background: #f7f9ff;
+            border-radius: 13px
+        }
+
+        .pdf-submit {
+            border: 2px solid var(--cobalt);
+            background: #edf5ff;
+            border-radius: 18px;
+            padding: 22px;
+            margin-top: 28px
+        }
+
+        .pdf-note {
+            color: var(--muted);
+            font-size: .88rem
+        }
+
+        code {
+            background: #f2f4f8;
+            border-radius: 4px;
+            padding: 1px 4px
+        }
+
+        pre code {
+            background: transparent
+        }
+
+        @media(max-width:690px) {
+            .wrap {
+                padding: 0 14px 50px
+            }
+
+            .card {
+                padding: 17px
+            }
+
+            .two {
+                grid-template-columns: 1fr
+            }
+
+            .deck-stage {
+                padding: 23px 19px;
+                min-height: 300px
+            }
+
+            .chip {
+                font-size: .95rem
+            }
+
+            .deck-footer {
+                padding: 12px
+            }
+
+            .jump a {
+                font-size: .8rem
+            }
+        }
+
+        @media print {
+
+            .r-run,
+            .deck-footer,
+            .jump,
+            .model-controls,
+            #download-pdf {
+                display: none !important
+            }
+
+            .deck-slide {
+                display: block !important;
+                page-break-inside: avoid
+            }
+
+            .card,
+            .teaching-deck {
+                box-shadow: none;
+                break-inside: avoid
+            }
+        }
+
+
+        /* ===== Header styling: match Labs 1 and 2 ===== */
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 18px 34px 72px;
+        }
+
+        .hero {
+            position: relative;
+            margin: 0 0 34px;
+            padding: 0;
+            border: 0;
+            background: #1460f3;
+            color: white;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            overflow: visible;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 38px;
+            left: 0;
+            right: 0;
+            border-top: 4px solid white;
+            opacity: .95;
+        }
+
+        .eyebrow {
+            position: absolute;
+            top: 21px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: inline-block;
+            padding: 7px 26px 8px;
+            border: 4px solid white;
+            border-radius: 999px;
+            background: #283544;
+            color: white;
+            font-size: 1rem;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .hero h1 {
+            margin: 38px 24px 6px;
+            font-size: clamp(2.15rem, 4vw, 3.3rem);
+            line-height: 1.1;
+            letter-spacing: -.02em;
+            font-weight: 500;
+            color: white;
+        }
+
+        .lede {
+            max-width: 820px;
+            margin: 0 auto 20px;
+            padding: 0 28px;
+            color: white;
+            font-size: 1.06rem;
+            opacity: .96;
+        }
+
+        .hero .r-status {
+            position: absolute;
+            bottom: -34px;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0;
+            background: white;
+            color: #596575;
+            border: 1px solid #d9dee5;
+            border-radius: 999px;
+            padding: 7px 13px;
+            box-shadow: 0 2px 8px rgba(17, 24, 39, .08);
+            font-size: .82rem;
+            z-index: 3;
+            white-space: nowrap;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .r-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #9aa1ac;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .r-status.ready .r-dot {
+            background: #2a9d61;
+        }
+
+        .r-status.error .r-dot {
+            background: #c13939;
+        }
+
+        @media (max-width: 760px) {
+            .hero {
+                min-height: 250px;
+                padding: 78px 20px 34px;
+            }
+
+            .eyebrow {
+                top: 20px;
+            }
+
+            .hero .r-status {
+                white-space: normal;
+                width: 90%;
+                text-align: center;
+            }
+        }
+
+        .scatterplot-image {
+            display: block;
+            width: 100%;
+            max-width: 900px;
+            height: auto;
+            margin: 0 auto 20px;
+        }
+
+        .model-demo {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap">
+        <header class="hero" id="top">
+            <span class="eyebrow">R Lab 3</span>
+            <h1>Making Relationships Visible</h1>
+            <p class="lede">
+                Explore how different graphs help us discover and understand
+                relationships between variables.
+            </p>
+            <div class="r-status status" id="r-status">
+                <span class="r-dot"></span>
+                <span id="r-status-text">Starting R and loading the scooter data…</span>
+            </div>
+        </header>
+
+        <section id="models">
+            <div class="section-marker">
+                <div class="part">Opening · ~3 minutes</div>
+                <h2>Can you see the model?</h2>
+                <p>From lecture to lab: models help us describe the world.</p>
+            </div>
+            <div class="card">
+                <p>
+                    In lecture this week, we'll be thinking about models:
+                    simplified representations that help us understand the world. A
+                    mathematical model can describe a relationship using an equation. But
+                    first, we can look for relationships visually.
+                </p>
+                <div class="viz"><svg viewBox="0 0 720 320" role="img"
+                        aria-label="Illustrative scatterplot of two variables with optional fitted line">
+                        <g stroke="#bdcde4" stroke-width="1">
+                            <path d="M75 50V267H667" fill="none" stroke="#54637c" stroke-width="2" />
+                            <path d="M75 215H667M75 164H667M75 113H667M75 62H667" stroke-dasharray="4 8" />
+                        </g>
+                        <g fill="#1155cc" opacity=".83">
+                            <circle cx="111" cy="240" r="8" />
+                            <circle cx="150" cy="220" r="8" />
+                            <circle cx="191" cy="231" r="8" />
+                            <circle cx="235" cy="195" r="8" />
+                            <circle cx="277" cy="180" r="8" />
+                            <circle cx="315" cy="198" r="8" />
+                            <circle cx="354" cy="160" r="8" />
+                            <circle cx="399" cy="141" r="8" />
+                            <circle cx="439" cy="160" r="8" />
+                            <circle cx="486" cy="117" r="8" />
+                            <circle cx="530" cy="104" r="8" />
+                            <circle cx="570" cy="116" r="8" />
+                            <circle cx="614" cy="74" r="8" />
+                        </g>
+                        <path id="model-line" d="M99 244L640 62" stroke="#cf2f7b" stroke-width="7"
+                            stroke-linecap="round" fill="none" visibility="hidden" /><text x="359" y="308"
+                            text-anchor="middle" fill="#384861" font-size="19">Variable X</text><text x="24" y="162"
+                            text-anchor="middle" transform="rotate(-90 24 162)" fill="#384861" font-size="19">Variable
+                            Y</text>
+                    </svg>
+                    <div class="model-controls"><button id="toggle-model" class="primary-btn" type="button"
+                            aria-pressed="false">Show model</button></div>
+                    <p id="model-note" class="model-note">
+                        Each dot is an observation. What pattern do you notice?
+                    </p>
+                </div>
+                <div class="ta-cue">
+                    <strong>TA discussion:</strong> What do the dots represent? What does the line add?
+                    Does the model perfectly represent every observation?
+                </div>
+                <div class="callout"><strong>
+                        Big idea:</strong> A graph helps us notice patterns. A model is one way of
+                    summarizing or explaining those patterns. To choose the right graph, we first need to
+                    understand our variables.
+                </div>
+            </div>
+        </section>
+
+
+        <section id="variables">
+            <div class="section-marker">
+                <div class="part">Part 1 · ~12 minutes</div>
+                <h2>Understanding variables</h2>
+                <p>What kinds of information do our columns represent?</p>
+            </div>
+            <div class="card">
+                <p>
+                    Remember from Lab 1 that R stores different kinds of <em>values</em>,
+                    like numbers and text? Now we'll classify variables by what their
+                    values mean.
+                </p>
+                <div class="teaching-deck" data-deck>
+                    <div class="deck-stage">
+                        <div class="deck-slide active"><span class="deck-kicker">01 / THE QUESTION</span>
+                            <div class="big-word">What kind of variable is it?</div>
+                            <p class="deck-desc">A column might contain words or numbers—but the important question is
+                                what those values <strong>represent</strong>.</p>
+                            <div class="chip-row"><span class="chip">Provider</span><span
+                                    class="chip number">Trips</span><span class="chip ordered">Rating</span></div>
+                        </div>
+                        <div class="deck-slide"><span class="deck-kicker">02 / CATEGORICAL</span>
+                            <div class="big-word" style="color:var(--cobalt)">Which group?</div>
+                            <p class="deck-desc">A <strong>categorical</strong> variable places observations into
+                                groups. The categories don't have to be numbers.</p>
+                            <div class="chip-row"><span class="chip">Bird</span><span class="chip">Lime</span><span
+                                    class="chip">Veo</span></div>
+                            <p><strong>Scooter example:</strong> <code>provider_name</code>.</p>
+                        </div>
+                        <div class="deck-slide"><span class="deck-kicker">03 / QUANTITATIVE</span>
+                            <div class="big-word" style="color:var(--magenta)">How many? How much?</div>
+                            <p class="deck-desc">A <strong>quantitative</strong> variable records a count or
+                                measurement. Numerical differences have meaning.</p>
+                            <div class="chip-row"><span class="chip number">12 trips</span><span class="chip number">28
+                                    trips</span><span class="chip number">43 trips</span></div>
+                            <p><strong>Scooter example:</strong> <code>trips</code> or <code>avg_distance</code>.</p>
+                        </div>
+                        <div class="deck-slide"><span class="deck-kicker">04 / ORDINAL</span>
+                            <div class="big-word" style="color:#558c09">Which level?</div>
+                            <p class="deck-desc">An <strong>ordinal</strong> variable is a useful hybrid: its values are
+                                <strong>categories with a meaningful order</strong>, but the gaps between levels aren't
+                                necessarily equal.
+                            </p>
+                            <div class="chip-row"><span class="chip ordered">Low</span><span
+                                    class="chip ordered">Medium</span><span class="chip ordered">High</span></div>
+                            <p><strong>Example:</strong> a survey rating of experience: beginner, intermediate,
+                                advanced.</p>
+                        </div>
+                        <div class="deck-slide"><span class="deck-kicker">05 / WATCH OUT</span>
+                            <div class="big-word">Numbers don't always mean quantity.</div>
+                            <p class="deck-desc">A ZIP code or student ID might be stored using digits, but it labels a
+                                category or identifies a record. We wouldn't calculate its average to answer a
+                                meaningful question.</p>
+                            <div class="chip-row"><span class="chip">47401</span><span class="chip">47403</span><span
+                                    class="chip">47408</span></div>
+                        </div>
+                    </div>
+                    <div class="deck-footer"><button type="button" class="deck-button deck-prev">← Back</button><span
+                            class="deck-count" aria-live="polite">1 of 5</span><button type="button"
+                            class="deck-button deck-next">Next →</button></div>
+                </div>
+                <div class="phase try">Try</div>
+                <p>Classify these columns from our scooter dataset: <code>provider_name</code>, <code>trips</code>,
+                    <code>avg_distance</code>, <code>day_of_week</code>. Is each categorical, quantitative, or ordinal?
+                    Explain one of your choices.
+                </p><label class="answer-label" for="variable-answer">Your
+                    classifications and explanation</label><textarea class="student-answer" id="variable-answer"
+                    data-question="Classify provider_name, trips, avg_distance, and day_of_week. Explain one choice."
+                    placeholder="provider_name: ..."></textarea>
+            </div>
+        </section>
+
+        <section id="bars">
+            <div class="section-marker">
+                <div class="part">Part 2 · ~8 minutes</div>
+                <h2>Bar graphs: compare categories</h2>
+                <p>You know this one! Let's connect the graph to its variable types.</p>
+            </div>
+            <div class="card">
+                <div class="graph-example">
+                    <h3>Welcome survey example</h3>
+                    <p class="small">
+                        In the Welcome Survey, we asked you,
+                        "Tell us something about yourself that you’d like us to know.
+                        For example: a hobby, extracurricular activity, job, talent,
+                        interest, favorite thing, or anything else you’d like to
+                        share." Here's what the class responses looked like in a bar graph!
+                    </p>
+                    <img class="sample-img" data-placeholder-image src="assets/class_interests_combined.png"
+                        alt="Instructor-supplied welcome survey bar graph" onerror="this.removeAttribute('src')">
+                    <div class="placeholder">
+                        <div><strong>Welcome survey: bar graph</strong>
+                            <p>Anonymous class results go here</p><code>assets/class_interests_combined.png</code>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <strong>What to notice:</strong> Bar graphs compare categories using a
+                    numerical value, such as a count or average. Remember the principles of
+                    alignment and repetition from our visual design lecture? Bars share a
+                    common baseline and repeat the same visual form, making it easy to compare
+                    their heights. The differences between bars are what communicate the data!
+                </p>
+                <div class="phase watch">Watch</div>
+                <p>
+                    We've already used <code>average_by()</code> and <code>bar_graph()</code>.
+                    Let's review by using them to summarize trips by provider and create a bar graph.
+                </p>
+
+                <div class="r-cell" data-submit="false">
+                    <div class="r-cell-head"><span class="r-cell-label">Watch: trips by provider</span>
+                        <button class="r-run" disabled type="button">Run</button>
+                    </div>
+                    <textarea class="r-editor" spellcheck="false">provider_trips <- average_by(clean_scooters, provider_name, trips)
+bar_graph(provider_trips, x = provider_name, y = trips)</textarea>
+                    <div class="r-output-wrap">
+                        <div class="r-output-label">Output</div>
+                        <pre class="r-output">R is still loading…</pre>
+                        <div class="r-plots"></div>
+                    </div>
+                </div>
+
+                <div class="phase try">Try</div>
+                <p>
+                    Create a bar graph comparing the average number
+                    of available scooters across providers. Start
+                    by summarizing with <code>average_by()</code>.
+                </p>
+                <div class="r-cell" data-submit="true">
+                    <div class="r-cell-head"><span class="r-cell-label">Your turn: a bar graph</span>
+                        <button class="r-run" disabled type="button">Run</button>
+                    </div><textarea class="r-editor" spellcheck="false"># 1. Summarize available_scooters by provider_name.
+
 # 2. Make a bar graph of your summary.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase check">Check</div><p>Does each bar represent a provider? Does its height show an average? Can you read the labels?</p><div class="callout"><strong>Optional extension — clustered bars:</strong> You can put two groups of bars side by side to compare a <em>second</em> categorical variable (such as weekday vs. weekend). We won't code that today; the key idea is that color or position can show group membership.</div></div></section>
-<section id="scatters"><div class="section-marker"><div class="part">Part 3 · ~12 minutes</div><h2>Scatterplots: look for relationships</h2><p>Now return to the kind of graph we saw at the start of lab.</p></div><div class="card"><div class="graph-example"><h3>Welcome survey example</h3><p class="small">Instructor will add an anonymous example with two suitable quantitative variables, if available.</p><img class="sample-img" data-placeholder-image src="assets/welcome_scatterplot.png" alt="Instructor-supplied welcome survey scatterplot" onerror="this.removeAttribute('src')"><div class="placeholder"><div><strong>Welcome survey: scatterplot</strong><p>Two quantitative variables go here</p><code>assets/welcome_scatterplot.png</code></div></div></div><p>Each dot represents one observation with <strong>two quantitative values</strong>. Look for upward, downward, or no obvious pattern. An association isn't automatically a cause.</p><div class="phase watch">Watch</div><p>How does the number of scooters available relate to the number of trips? Our <code>scatter_plot()</code> helper creates the dots.</p><div class="r-cell" data-submit="false"><div class="r-cell-head"><span class="r-cell-label">Watch: available scooters and trips</span><button class="r-run" disabled type="button">Run</button></div><textarea class="r-editor" spellcheck="false">scatter_plot(clean_scooters, x = available_scooters, y = trips)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><p><strong>Remember the opening?</strong> Dots represent the observations; adding a line is one way to summarize their overall relationship.</p><div class="r-cell" data-submit="false"><div class="r-cell-head"><span class="r-cell-label">Watch: add an example linear model</span><button class="r-run" disabled type="button">Run</button></div><textarea class="r-editor" spellcheck="false">scatter_plot(clean_scooters, x = available_scooters, y = trips)
-abline(lm(trips ~ available_scooters, data = clean_scooters), col = "#cf2f7b", lwd = 3)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><p class="small">You don't need to memorize <code>lm()</code> or <code>abline()</code> today. We're using them to illustrate the relationship between observations and a simple model.</p><div class="phase try">Try</div><p>What about <strong>average trip duration</strong> and <strong>average trip distance</strong>? Make a scatterplot using <code>avg_duration</code> and <code>avg_distance</code>. Do they appear related?</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: a scatterplot</span><button class="r-run" disabled type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Use scatter_plot(clean_scooters, x = ..., y = ...)
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="scatter-answer">What pattern do you notice? What are the two quantitative variables?</label><textarea class="student-answer" id="scatter-answer" data-question="Describe the relationship between average duration and average distance, and identify their variable types." placeholder="I notice..."></textarea><div class="phase check">Check</div><p>Both axes should show quantitative measurements. You may see unusual observations; don't assume every dot follows the same trend.</p><div class="callout"><strong>Optional extension — color-coded dots:</strong> Two quantitative variables still determine the dot's position, while <em>color</em> can identify a categorical group, such as the scooter provider. That's another way to represent more information without changing the basic graph.</div></div></section>
-<section id="lines"><div class="section-marker"><div class="part">Part 4 · ~12 minutes</div><h2>Line graphs: follow change over time</h2><p>Some relationships are about a progression—especially dates.</p></div><div class="card"><div class="graph-example"><h3>Optional welcome survey or instructor example</h3><p class="small">Use a time-series example only if the welcome survey actually includes data collected across time. Otherwise replace this with a simple scooter-data graph.</p><img class="sample-img" data-placeholder-image src="assets/welcome_line_graph.png" alt="Instructor-supplied line graph" onerror="this.removeAttribute('src')"><div class="placeholder"><div><strong>Line graph example</strong><p>Change over time (or another meaningful continuum)</p><code>assets/welcome_line_graph.png</code></div></div></div><p>A line graph connects observations in meaningful order. It's especially useful for showing changes over <strong>time</strong>, rather than comparing unrelated categories.</p><div class="phase watch">Watch</div><p>Our daily scooter dataset has multiple provider rows for some dates. First we <strong>total trips by day</strong>, then plot the days in chronological order.</p><div class="r-cell" data-submit="false"><div class="r-cell-head"><span class="r-cell-label">Watch: daily trips during April 2019</span><button class="r-run" disabled type="button">Run</button></div><textarea class="r-editor" spellcheck="false">april_scooters <- filter_rows(clean_scooters, year == 2019 & month == 4)
-daily_trips <- total_by(april_scooters, day, trips)
-line_graph(daily_trips, x = day, y = trips)</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><div class="phase try">Try</div><p>Plot the <strong>total number of trips per day during May 2019</strong>. Change the month in the example above, then summarize and plot.</p><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Your turn: a line graph</span><button class="r-run" disabled type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># 1. Keep May 2019 observations.
+
+</textarea>
+                    <div class="r-output-wrap">
+                        <div class="r-output-label">Output</div>
+                        <pre class="r-output">R is still loading…</pre>
+                        <div class="r-plots"></div>
+                    </div>
+                </div>
+                <div class="phase check">Check</div>
+                <p>Does each bar represent a provider? Does its height show an average? Can you read the labels?</p>
+                <div class="callout"><strong>Optional extension — clustered bars:</strong> You can put two groups of
+                    bars side by side to compare a <em>second</em> categorical variable (such as weekday vs. weekend).
+                    We won't code that today; the key idea is that color or position can show group membership.</div>
+            </div>
+        </section>
+        <section id="scatters">
+            <div class="section-marker">
+                <div class="part">Part 3 · ~12 minutes</div>
+                <h2>Scatterplots: look for relationships</h2>
+                <p>Now return to the kind of graph we saw at the start of lab.</p>
+            </div>
+            <div class="card">
+                <div class="graph-example">
+                    <h3>Scatterplot example</h3>
+                    <p class="small">
+                        A scatterplot shows the relationship between two quantitative variables.
+                        This scatterplot shows a positive relationship between the quality of air
+                        in Albuquerque and the number of likes on Mr. Beast videos. This is an
+                        example of a spurious correlation (a relationship that appears real but
+                        is actually coincidental). As far as we know, the air quality in Albuquerque
+                        does not affect the number of likes on Mr. Beast videos, and the number of likes
+                        on Mr. Beast videos does not affect the air quality in Albuquerque!
+                    </p>
+                    <div class="model-demo">
+                        <img id="spurious-scatterplot" class="scatterplot-image" src="assets/mrbeast-scatter.png"
+                            alt="Scatterplot of Albuquerque air quality and the number of MrBeast videos published" />
+
+                        <button type="button" id="model-toggle" class="primary-btn">
+                            Show Model
+                        </button>
+                    </div>
+
+                    <script>
+                        const modelButton = document.getElementById("model-toggle");
+                        const scatterImage = document.getElementById("spurious-scatterplot");
+
+                        let showingModel = false;
+
+                        modelButton.addEventListener("click", () => {
+                            showingModel = !showingModel;
+
+                            scatterImage.src = showingModel
+                                ? "assets/mrbeast-scatter-model.png"
+                                : "assets/mrbeast-scatter.png";
+
+                            modelButton.textContent = showingModel
+                                ? "Hide Model"
+                                : "Show Model";
+                        });
+                    </script>
+                </div>
+
+                <p>
+                    Each dot represents one observation with two quantitative values. Look for 
+                    upward, downward, or no obvious pattern. As you can see by this example, 
+                    an association isn't automatically a cause.
+                </p>
+                <div class="phase watch">Watch</div>
+                <p>
+                    How does the number of scooters available relate to the number of trips? Our
+                    <code>scatter_plot()</code> helper creates the dots. Just like our
+                    <code>bar_graph()</code> helper, the <code>scatter_plot()</code> helper
+                    takes a dataset and specifies the columns to use for the x and y axes.
+                </p>
+                <div class="r-cell" data-submit="false">
+                    <div class="r-cell-head"><span class="r-cell-label">Watch: available scooters and
+                            trips</span><button class="r-run" disabled type="button">Run</button></div><textarea
+                        class="r-editor"
+                        spellcheck="false">scatter_plot(clean_scooters, x = available_scooters, y = trips)</textarea>
+                    <div class="r-output-wrap">
+                        <div class="r-output-label">Output</div>
+                        <pre class="r-output">R is still loading…</pre>
+                        <div class="r-plots"></div>
+                    </div>
+                </div>
+                <p>
+                    Dots represent the observations; adding a line is one way to summarize 
+                    their overall relationship.
+                </p>
+                <div class="r-cell" data-submit="false">
+                    <div class="r-cell-head"><span class="r-cell-label">Watch: add an example linear model</span><button
+                            class="r-run" disabled type="button">Run</button></div><textarea class="r-editor"
+                        spellcheck="false">scatter_plot(clean_scooters, x = available_scooters, y = trips)
+
+# The code below adds a linear model line of best fit to the scatter plot
+# This line of best fit helps visualize the overall trend in the data.
+# You don't need to memorize lm() or abline() today. 
+# We're using them to illustrate the relationship between observations and a simple model.
+
+abline(lm(trips ~ available_scooters, data = clean_scooters), col = "magenta", lwd = 3)</textarea>
+                    <div class="r-output-wrap">
+                        <div class="r-output-label">Output</div>
+                        <pre class="r-output">R is still loading…</pre>
+                        <div class="r-plots"></div>
+                    </div>
+                </div>
+                
+                <div class="phase try">Try</div>
+                <p>
+                   Do trips that are longer distances tend to have longer durations?
+                   Make a scatterplot using avg_distance on the x-axis and 
+                   avg_duration on the y-axis. Do they appear related?
+                </p>
+                <div class="r-cell" data-submit="true">
+                    <div class="r-cell-head"><span class="r-cell-label">Your turn: a scatterplot</span><button
+                            class="r-run" disabled type="button">Run</button></div><textarea class="r-editor"
+                        spellcheck="false"># Use scatter_plot(clean_scooters, x = ..., y = ...)
+# Be sure to put avg_distance on the x-axis and avg_duration on the y-axis.
+
+# We added code below to add a line of best fit to the scatterplot
+# Feel free to change the color (col) and/ line width (lwd) to your liking.
+abline(lm(avg_duration ~ avg_distance, data = clean_scooters), col = "magenta", lwd = 3)
+</textarea>
+                    <div class="r-output-wrap">
+                        <div class="r-output-label">Output</div>
+                        <pre class="r-output">R is still loading…</pre>
+                        <div class="r-plots"></div>
+                    </div>
+                </div>
+                <label class="answer-label" for="scatter-answer">
+                    What pattern do you notice? Does anything surprise you?
+                </label>
+                <textarea class="student-answer" id="scatter-answer"
+                    data-question="Describe the relationship between average duration and average distance, and identify their variable types."
+                    placeholder="I notice...">
+                </textarea>
+            </div>
+        </section>
+
+        <section id="lines">
+            <div class="section-marker">
+                <div class="part">Part 4 · ~12 minutes</div>
+                <h2>Line graphs: follow change over time</h2>
+                <p>Some relationships are about a progression (especially dates).</p>
+            </div>
+            <div class="card">
+                <div class="graph-example">
+                    <h3>Lne graph example</h3>
+                    <p class="small">
+                        This line graph shows...
+                    </p><img
+                        class="sample-img" data-placeholder-image src="assets/welcome_line_graph.png"
+                        alt="Instructor-supplied line graph" onerror="this.removeAttribute('src')">
+                    <div class="placeholder">
+                        <div><strong>Line graph example</strong>
+                            <p>Change over time (or another meaningful continuum)</p>
+                            <code>assets/welcome_line_graph.png</code>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    A line graph connects observations in meaningful order. 
+                    It's especially useful for showing changes over time.
+                </p>
+                <div class="phase watch">Watch</div>
+                <p>
+                    How did the number of scooter trips change over time?
+                    Before making a line graph, we need to think about what unit of 
+                    time we want to use (e.g., days, weeks, months) for the x-axis.
+                    If we include every day, the x-axis will be quite crowded and long!
+                    Instead, let's aggregate the data by month to get a clearer view of the trend.
+                </p>
+                <p>
+                    We also need to think about the particulars of our dataset, such as multiple 
+                    entries for the same date. Recall, that our dataset contains multiple provider 
+                    rows for some dates. (Each row is a unique combination of provider and day.) Let's
+                    have our line graph show a separate line for each provider.
+                </p>
+
+                <div class="r-cell" data-submit="false">
+                    <div class="r-cell-head">
+                        <span class="r-cell-label">Watch: monthly trips by provider</span>
+                        <button class="r-run" disabled type="button">Run</button>
+                    </div><textarea class="r-editor" spellcheck="false"># First, we need to summarize our data by provider AND month
+# Our dependent (y) variable is the number of trips, but what should our 
+# independent variable be: month or provider?
+# That question is a trick! We think that trips are influenced by both month and provider.
+monthly_trips <- total_by(clean_scooters, x = c(provider_name, year_month), y = trips)
+
+# Let's take a look at what our summarized data looks like
+monthly_trips
+
+# Now we can create a line graph using the summarized data
+# Our x-axis will be the month, our y-axis will be the number of trips, 
+# and we will have a separate line (or group) for each provider.
+line_graph(monthly_trips, x = year_month, y = trips, group = provider_name)</textarea>
+                    <div class="r-output-wrap">
+                        <div class="r-output-label">Output</div>
+                        <pre class="r-output">R is still loading…</pre>
+                        <div class="r-plots"></div>
+                    </div>
+                </div>
+                <div class="phase try">Try</div>
+                <p>Plot the <strong>total number of trips per day during May 2019</strong>. Change the month in the
+                    example above, then summarize and plot.</p>
+                <div class="r-cell" data-submit="true">
+                    <div class="r-cell-head"><span class="r-cell-label">Your turn: a line graph</span><button
+                            class="r-run" disabled type="button">Run</button></div><textarea class="r-editor"
+                        spellcheck="false"># 1. Keep May 2019 observations.
 # 2. Total trips by day.
 # 3. Use line_graph() to show changes through time.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="line-answer">Describe one increase, decrease, or fluctuation you observe.</label><textarea class="student-answer" id="line-answer" data-question="What change over time did you notice in the May 2019 scooter trips?" placeholder="I notice..."></textarea><div class="phase check">Check</div><p>Are dates on the horizontal axis in chronological order? Does connecting nearby dates help you see a trend?</p></div></section>
-<section id="challenge"><div class="section-marker"><div class="part">Part 5 · ~18 minutes</div><h2>Choose your graph!</h2><p>Now you're in charge: choose a question, pick a graph, make it, and interpret it.</p></div><div class="card"><p>Choose <strong>one</strong> of the questions below. Each is different from the questions we used in the demonstrations. You may reuse the patterns from earlier code boxes.</p><div class="two"><label class="mini-card"><input type="radio" name="challenge" value="A" checked> <strong>A · Compare categories</strong><p>Which provider has the highest <em>average trip duration</em>?</p><span class="small">Hint: one categorical and one quantitative variable.</span></label><label class="mini-card"><input type="radio" name="challenge" value="B"> <strong>B · Explore a relationship</strong><p>Do days with more trips tend to have a different <em>average trip distance</em>?</p><span class="small">Hint: two quantitative variables.</span></label><label class="mini-card"><input type="radio" name="challenge" value="C"> <strong>C · Explore a trend</strong><p>How did the number of <em>available scooters</em> change from day to day during June 2019?</p><span class="small">Hint: time and a quantitative summary.</span></label></div><p class="small">For C, total available scooters across providers by day, then use a line graph. Daily totals describe scooters reported available across providers; they are not individual unique scooters.</p><label class="answer-label" for="challenge-plan">1. Which question did you choose? Identify your variables and their types. Which graph fits, and why?</label><textarea class="student-answer" id="challenge-plan" data-question="Final challenge: chosen question, variables/types, graph type, and justification." placeholder="I chose... Because..."></textarea><div class="phase try">Make your graph</div><div class="r-cell" data-submit="true"><div class="r-cell-head"><span class="r-cell-label">Independent graph challenge</span><button class="r-run" disabled type="button">Run</button></div><textarea class="r-editor" spellcheck="false"># Write and run the R code for your chosen question.
+</textarea>
+                    <div class="r-output-wrap">
+                        <div class="r-output-label">Output</div>
+                        <pre class="r-output">R is still loading…</pre>
+                        <div class="r-plots"></div>
+                    </div>
+                </div><label class="answer-label" for="line-answer">Describe one increase, decrease, or fluctuation you
+                    observe.</label><textarea class="student-answer" id="line-answer"
+                    data-question="What change over time did you notice in the May 2019 scooter trips?"
+                    placeholder="I notice..."></textarea>
+                <div class="phase check">Check</div>
+                <p>Are dates on the horizontal axis in chronological order? Does connecting nearby dates help you see a
+                    trend?</p>
+            </div>
+        </section>
+        <section id="challenge">
+            <div class="section-marker">
+                <div class="part">Part 5 · ~18 minutes</div>
+                <h2>Choose your graph!</h2>
+                <p>Now you're in charge: choose a question, pick a graph, make it, and interpret it.</p>
+            </div>
+            <div class="card">
+                <p>Choose <strong>one</strong> of the questions below. Each is different from the questions we used in
+                    the demonstrations. You may reuse the patterns from earlier code boxes.</p>
+                <div class="two"><label class="mini-card"><input type="radio" name="challenge" value="A" checked>
+                        <strong>A · Compare categories</strong>
+                        <p>Which provider has the highest <em>average trip duration</em>?</p><span class="small">Hint:
+                            one categorical and one quantitative variable.</span>
+                    </label><label class="mini-card"><input type="radio" name="challenge" value="B"> <strong>B · Explore
+                            a relationship</strong>
+                        <p>Do days with more trips tend to have a different <em>average trip distance</em>?</p><span
+                            class="small">Hint: two quantitative variables.</span>
+                    </label><label class="mini-card"><input type="radio" name="challenge" value="C"> <strong>C · Explore
+                            a trend</strong>
+                        <p>How did the number of <em>available scooters</em> change from day to day during June 2019?
+                        </p><span class="small">Hint: time and a quantitative summary.</span>
+                    </label></div>
+                <p class="small">For C, total available scooters across providers by day, then use a line graph. Daily
+                    totals describe scooters reported available across providers; they are not individual unique
+                    scooters.</p><label class="answer-label" for="challenge-plan">1. Which question did you choose?
+                    Identify your variables and their types. Which graph fits, and why?</label><textarea
+                    class="student-answer" id="challenge-plan"
+                    data-question="Final challenge: chosen question, variables/types, graph type, and justification."
+                    placeholder="I chose... Because..."></textarea>
+                <div class="phase try">Make your graph</div>
+                <div class="r-cell" data-submit="true">
+                    <div class="r-cell-head"><span class="r-cell-label">Independent graph challenge</span><button
+                            class="r-run" disabled type="button">Run</button></div><textarea class="r-editor"
+                        spellcheck="false"># Write and run the R code for your chosen question.
 # You can look back at the Watch examples above.
-</textarea><div class="r-output-wrap"><div class="r-output-label">Output</div><pre class="r-output">R is still loading…</pre><div class="r-plots"></div></div></div><label class="answer-label" for="challenge-interpret">2. What does your graph tell you? What is one thing it <em>can't</em> tell you?</label><textarea class="student-answer" id="challenge-interpret" data-question="Final challenge: interpretation and one limitation." placeholder="My graph suggests... It cannot tell me..."></textarea><div class="phase check">Check</div><p>Your graph should match your variables and question. Make sure it actually rendered, check axis labels, and describe a real pattern rather than simply naming the graph type.</p><div class="callout"><strong>Finished early?</strong> Try a second challenge! You may add code and another plot in your challenge code box.</div></div></section>
-<section class="pdf-submit" id="submit-work"><h2>Save your work</h2><p>Download a PDF containing your <strong>Try</strong> code, output, graphs, and written answers. Upload it to the Lab 3 assignment in Canvas.</p><button class="primary-btn" id="download-pdf" type="button">Download PDF</button><p class="pdf-note" id="pdf-note">Run each Try activity before downloading. The teaching animations and instructor example images are not included in the student submission.</p></section>
-</main><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script><script>
-const modelButton=document.querySelector('#toggle-model'),modelLine=document.querySelector('#model-line'),modelNote=document.querySelector('#model-note');let shown=false;modelButton.addEventListener('click',()=>{shown=!shown;modelLine.setAttribute('visibility',shown?'visible':'hidden');modelButton.textContent=shown?'Hide model':'Show model';modelButton.setAttribute('aria-pressed',String(shown));modelNote.textContent=shown?'The line is a simplified model of the overall pattern. It does not pass through every observation.':'Each dot is an observation. What pattern do you notice?';});
-document.querySelectorAll('[data-deck]').forEach(deck=>{const slides=[...deck.querySelectorAll('.deck-slide')],prev=deck.querySelector('.deck-prev'),next=deck.querySelector('.deck-next'),count=deck.querySelector('.deck-count');let i=0;function render(){slides.forEach((s,n)=>{s.classList.toggle('active',n===i);s.setAttribute('aria-hidden',String(n!==i));});prev.disabled=i===0;next.textContent=i===slides.length-1?'Replay ↻':'Next →';count.textContent=(i+1)+' of '+slides.length;}prev.onclick=()=>{i=Math.max(0,i-1);render();};next.onclick=()=>{i=(i+1)%slides.length;render();};render();});
-const pdfButton=document.getElementById('download-pdf'),pdfNote=document.getElementById('pdf-note');function appendLines(doc,str,x,y,w,lineHeight){for(const line of String(str||'').split('\n'))for(const part of doc.splitTextToSize(line||' ',w)){if(y>10.12){doc.addPage();y=.65;}doc.text(part,x,y);y+=lineHeight;}return y;}pdfButton.addEventListener('click',()=>{if(!window.jspdf){pdfNote.textContent='PDF library could not load. Check your connection.';return;}const{jsPDF}=window.jspdf,doc=new jsPDF({unit:'in',format:'letter'}),x=.65,w=7.2;let y=.75;doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('INFO-I101 — Making Relationships Visible',x,y);y+=.3;doc.setFont('helvetica','normal');doc.setFontSize(10);doc.text('R Lab 3 · Student work',x,y);y+=.4;document.querySelectorAll('.r-cell[data-submit="true"]').forEach(cell=>{if(y>8.8){doc.addPage();y=.65;}doc.setFont('helvetica','bold');doc.setFontSize(12);y=appendLines(doc,cell.querySelector('.r-cell-label').textContent,x,y,w,.22);y+=.07;for(const [heading,value] of [['Code',cell.querySelector('.r-editor').value],['Output',cell.querySelector('.r-output').textContent]]){if(y>9.7){doc.addPage();y=.65;}doc.setFont('helvetica','bold');doc.setFontSize(9);doc.text(heading,x,y);y+=.2;doc.setFont('courier','normal');doc.setFontSize(8);y=appendLines(doc,value||'(blank)',x,y,w,.155);y+=.13;}for(const canvas of cell.querySelectorAll('.r-plots canvas')){const h=Math.min(3.9,6.8*canvas.height/canvas.width);if(y+h>10.05){doc.addPage();y=.65;}doc.addImage(canvas.toDataURL('image/png'),'PNG',x,y,6.8,h);y+=h+.16;}y+=.12;});if(y>9){doc.addPage();y=.65;}doc.setFont('helvetica','bold');doc.setFontSize(13);doc.text('Written responses',x,y);y+=.3;doc.setFont('helvetica','normal');doc.setFontSize(10);y=appendLines(doc,'Challenge selected: '+(document.querySelector('input[name="challenge"]:checked')?.value||'(not selected)'),x,y,w,.2);y+=.25;document.querySelectorAll('.student-answer').forEach(answer=>{if(y>9.5){doc.addPage();y=.65;}doc.setFont('helvetica','bold');doc.setFontSize(9);y=appendLines(doc,answer.dataset.question,x,y,w,.18);y+=.07;doc.setFont('helvetica','normal');doc.setFontSize(10);y=appendLines(doc,answer.value||'(No response entered)',x,y,w,.19);y+=.23;});doc.save('I101_R_Lab_3.pdf');pdfNote.textContent='PDF downloaded. Upload it to Canvas.';});
-</script><script type="module">
-const status=document.getElementById('r-status'),statusText=document.getElementById('r-status-text'),buttons=[...document.querySelectorAll('.r-run')];let webR,busy=false;async function runCell(cell,button){if(busy)return;const code=cell.querySelector('.r-editor').value.trim(),output=cell.querySelector('.r-output');if(!code||code.split('\n').every(line=>!line.trim()||line.trim().startsWith('#'))){output.textContent='Write some R code first.';return;}busy=true;buttons.forEach(b=>b.disabled=true);button.textContent='Running…';output.textContent='Running…';cell.querySelector('.r-plots').replaceChildren();let shelter;try{shelter=await new webR.Shelter();const result=await shelter.captureR(code,{withAutoprint:true,captureStreams:true,captureConditions:true,captureGraphics:{width:550,height:360,bg:'white'}});const lines=[];for(const item of result.output||[]){if(item.type==='stdout'||item.type==='stderr'||typeof item.data==='string')lines.push(String(item.data));}output.textContent=lines.length?lines.join('\n'):'✓ Code ran successfully.';for(const img of result.images||[]){const canvas=document.createElement('canvas');canvas.width=img.width;canvas.height=img.height;canvas.getContext('2d').drawImage(img,0,0);cell.querySelector('.r-plots').appendChild(canvas);}}catch(err){output.textContent=err?.message||String(err);}finally{if(shelter){try{await shelter.purge();}catch(_){}}busy=false;buttons.forEach(b=>b.disabled=false);button.textContent='Run';}}
-async function fetchFirst(urls){let last;for(const url of urls){try{const r=await fetch(url);if(!r.ok)throw Error(r.status+' '+url);return await r.text();}catch(e){last=e;}}throw last;}
-async function init(){try{const {WebR}=await import('https://webr.r-wasm.org/v0.6.0/webr.mjs');webR=new WebR();await webR.init();const csv=await fetchFirst(['assets/scooter_activity_daily.csv','../lab2/assets/scooter_activity_daily.csv','https://raw.githubusercontent.com/smwwood/smwwood-i101-r-labs/main/lab2/assets/scooter_activity_daily.csv']);const helpers=await fetchFirst(['i101_helpers.R','../lab2/i101_helpers.R','https://raw.githubusercontent.com/smwwood/smwwood-i101-r-labs/main/lab2/i101_helpers.R']);await webR.FS.writeFile('/home/web_user/scooter_activity_daily.csv',new TextEncoder().encode(csv));await webR.FS.writeFile('/home/web_user/i101_helpers.R',new TextEncoder().encode(helpers));await webR.evalRVoid(`scooter_data <- read.csv('/home/web_user/scooter_activity_daily.csv',stringsAsFactors=FALSE)
+</textarea>
+                    <div class="r-output-wrap">
+                        <div class="r-output-label">Output</div>
+                        <pre class="r-output">R is still loading…</pre>
+                        <div class="r-plots"></div>
+                    </div>
+                </div><label class="answer-label" for="challenge-interpret">2. What does your graph tell you? What is
+                    one thing it <em>can't</em> tell you?</label><textarea class="student-answer"
+                    id="challenge-interpret" data-question="Final challenge: interpretation and one limitation."
+                    placeholder="My graph suggests... It cannot tell me..."></textarea>
+                <div class="phase check">Check</div>
+                <p>Your graph should match your variables and question. Make sure it actually rendered, check axis
+                    labels, and describe a real pattern rather than simply naming the graph type.</p>
+                <div class="callout"><strong>Finished early?</strong> Try a second challenge! You may add code and
+                    another plot in your challenge code box.</div>
+            </div>
+        </section>
+        <section class="pdf-submit" id="submit-work">
+            <h2>Save your work</h2>
+            <p>Download a PDF containing your <strong>Try</strong> code, output, graphs, and written answers. Upload it
+                to the Lab 3 assignment in Canvas.</p><button class="primary-btn" id="download-pdf"
+                type="button">Download PDF</button>
+            <p class="pdf-note" id="pdf-note">Run each Try activity before downloading. The teaching animations and
+                instructor example images are not included in the student submission.</p>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        const modelButton = document.querySelector('#toggle-model'), modelLine = document.querySelector('#model-line'), modelNote = document.querySelector('#model-note'); let shown = false; modelButton.addEventListener('click', () => { shown = !shown; modelLine.setAttribute('visibility', shown ? 'visible' : 'hidden'); modelButton.textContent = shown ? 'Hide model' : 'Show model'; modelButton.setAttribute('aria-pressed', String(shown)); modelNote.textContent = shown ? 'The line is a simplified model of the overall pattern. It does not pass through every observation.' : 'Each dot is an observation. What pattern do you notice?'; });
+        document.querySelectorAll('[data-deck]').forEach(deck => { const slides = [...deck.querySelectorAll('.deck-slide')], prev = deck.querySelector('.deck-prev'), next = deck.querySelector('.deck-next'), count = deck.querySelector('.deck-count'); let i = 0; function render() { slides.forEach((s, n) => { s.classList.toggle('active', n === i); s.setAttribute('aria-hidden', String(n !== i)); }); prev.disabled = i === 0; next.textContent = i === slides.length - 1 ? 'Replay ↻' : 'Next →'; count.textContent = (i + 1) + ' of ' + slides.length; } prev.onclick = () => { i = Math.max(0, i - 1); render(); }; next.onclick = () => { i = (i + 1) % slides.length; render(); }; render(); });
+        const pdfButton = document.getElementById('download-pdf'), pdfNote = document.getElementById('pdf-note'); function appendLines(doc, str, x, y, w, lineHeight) { for (const line of String(str || '').split('\n')) for (const part of doc.splitTextToSize(line || ' ', w)) { if (y > 10.12) { doc.addPage(); y = .65; } doc.text(part, x, y); y += lineHeight; } return y; } pdfButton.addEventListener('click', () => { if (!window.jspdf) { pdfNote.textContent = 'PDF library could not load. Check your connection.'; return; } const { jsPDF } = window.jspdf, doc = new jsPDF({ unit: 'in', format: 'letter' }), x = .65, w = 7.2; let y = .75; doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.text('INFO-I101 — Making Relationships Visible', x, y); y += .3; doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.text('R Lab 3 · Student work', x, y); y += .4; document.querySelectorAll('.r-cell[data-submit="true"]').forEach(cell => { if (y > 8.8) { doc.addPage(); y = .65; } doc.setFont('helvetica', 'bold'); doc.setFontSize(12); y = appendLines(doc, cell.querySelector('.r-cell-label').textContent, x, y, w, .22); y += .07; for (const [heading, value] of [['Code', cell.querySelector('.r-editor').value], ['Output', cell.querySelector('.r-output').textContent]]) { if (y > 9.7) { doc.addPage(); y = .65; } doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.text(heading, x, y); y += .2; doc.setFont('courier', 'normal'); doc.setFontSize(8); y = appendLines(doc, value || '(blank)', x, y, w, .155); y += .13; } for (const canvas of cell.querySelectorAll('.r-plots canvas')) { const h = Math.min(3.9, 6.8 * canvas.height / canvas.width); if (y + h > 10.05) { doc.addPage(); y = .65; } doc.addImage(canvas.toDataURL('image/png'), 'PNG', x, y, 6.8, h); y += h + .16; } y += .12; }); if (y > 9) { doc.addPage(); y = .65; } doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text('Written responses', x, y); y += .3; doc.setFont('helvetica', 'normal'); doc.setFontSize(10); y = appendLines(doc, 'Challenge selected: ' + (document.querySelector('input[name="challenge"]:checked')?.value || '(not selected)'), x, y, w, .2); y += .25; document.querySelectorAll('.student-answer').forEach(answer => { if (y > 9.5) { doc.addPage(); y = .65; } doc.setFont('helvetica', 'bold'); doc.setFontSize(9); y = appendLines(doc, answer.dataset.question, x, y, w, .18); y += .07; doc.setFont('helvetica', 'normal'); doc.setFontSize(10); y = appendLines(doc, answer.value || '(No response entered)', x, y, w, .19); y += .23; }); doc.save('I101_R_Lab_3.pdf'); pdfNote.textContent = 'PDF downloaded. Upload it to Canvas.'; });
+    </script>
+    <script type="module">
+        const status = document.getElementById('r-status'), statusText = document.getElementById('r-status-text'), buttons = [...document.querySelectorAll('.r-run')]; let webR, busy = false; async function runCell(cell, button) { if (busy) return; const code = cell.querySelector('.r-editor').value.trim(), output = cell.querySelector('.r-output'); if (!code || code.split('\n').every(line => !line.trim() || line.trim().startsWith('#'))) { output.textContent = 'Write some R code first.'; return; } busy = true; buttons.forEach(b => b.disabled = true); button.textContent = 'Running…'; output.textContent = 'Running…'; cell.querySelector('.r-plots').replaceChildren(); let shelter; try { shelter = await new webR.Shelter(); const result = await shelter.captureR(code, { withAutoprint: true, captureStreams: true, captureConditions: true, captureGraphics: { width: 550, height: 360, bg: 'white' } }); const lines = []; for (const item of result.output || []) { if (item.type === 'stdout' || item.type === 'stderr' || typeof item.data === 'string') lines.push(String(item.data)); } output.textContent = lines.length ? lines.join('\n') : '✓ Code ran successfully.'; for (const img of result.images || []) { const canvas = document.createElement('canvas'); canvas.width = img.width; canvas.height = img.height; canvas.getContext('2d').drawImage(img, 0, 0); cell.querySelector('.r-plots').appendChild(canvas); } } catch (err) { output.textContent = err?.message || String(err); } finally { if (shelter) { try { await shelter.purge(); } catch (_) { } } busy = false; buttons.forEach(b => b.disabled = false); button.textContent = 'Run'; } }
+        async function fetchFirst(urls) { let last; for (const url of urls) { try { const r = await fetch(url); if (!r.ok) throw Error(r.status + ' ' + url); return await r.text(); } catch (e) { last = e; } } throw last; }
+        async function init() {
+            try {
+                const { WebR } = await import('https://webr.r-wasm.org/v0.6.0/webr.mjs'); webR = new WebR(); await webR.init(); const csv = await fetchFirst(['assets/scooter_activity_daily.csv', '../lab3/assets/scooter_activity_daily.csv', 'https://raw.githubusercontent.com/smwwood/smwwood-i101-r-labs/main/lab3/assets/scooter_activity_daily.csv']); const helpers = await fetchFirst(['i101_helpers.R', '../lab3/i101_helpers.R', 'https://raw.githubusercontent.com/smwwood/smwwood-i101-r-labs/main/lab3/i101_helpers.R']); await webR.FS.writeFile('/home/web_user/scooter_activity_daily.csv', new TextEncoder().encode(csv)); await webR.FS.writeFile('/home/web_user/i101_helpers.R', new TextEncoder().encode(helpers)); await webR.evalRVoid(`scooter_data <- read.csv('/home/web_user/scooter_activity_daily.csv',stringsAsFactors=FALSE)
 source('/home/web_user/i101_helpers.R')
-clean_scooters <- filter_rows(scooter_data, avg_distance < 20 & avg_duration < 10000)`);await webR.evalRVoid(`line_graph <- function(data,x,y){xn <- deparse(substitute(x));yn <- deparse(substitute(y));if(!xn %in% names(data) || !yn %in% names(data))stop('Column not found');d <- data[order(as.Date(data[[xn]])),,drop=FALSE];plot(as.Date(d[[xn]]),d[[yn]],type='o',pch=16,lwd=2,col='#1155cc',cex=.55,xlab='Date',ylab=tools::toTitleCase(gsub('_',' ',yn)),main=paste(tools::toTitleCase(gsub('_',' ',yn)),'over time'))}`);status.classList.add('ready');statusText.textContent='R is ready. The scooter dataset and graph helpers are loaded; code boxes share one R session.';buttons.forEach(button=>{button.disabled=false;button.addEventListener('click',()=>runCell(button.closest('.r-cell'),button));});document.querySelectorAll('.r-output').forEach(o=>o.textContent='Ready.');}catch(err){status.classList.add('error');statusText.textContent='R could not start: '+(err?.message||String(err))+'. Serve this page via GitHub Pages or a local web server and check your internet connection.';console.error(err);}}init();
-</script></body></html>
+clean_scooters <- filter_rows(scooter_data, avg_distance < 20 & avg_duration < 10000)`); await webR.evalRVoid(`line_graph <- function(data,x,y){xn <- deparse(substitute(x));yn <- deparse(substitute(y));if(!xn %in% names(data) || !yn %in% names(data))stop('Column not found');d <- data[order(as.Date(data[[xn]])),,drop=FALSE];plot(as.Date(d[[xn]]),d[[yn]],type='o',pch=16,lwd=2,col='#1155cc',cex=.55,xlab='Date',ylab=tools::toTitleCase(gsub('_',' ',yn)),main=paste(tools::toTitleCase(gsub('_',' ',yn)),'over time'))}`); status.classList.add('ready'); statusText.textContent = 'R is ready. The scooter dataset and graph helpers are loaded; code boxes share one R session.'; buttons.forEach(button => { button.disabled = false; button.addEventListener('click', () => runCell(button.closest('.r-cell'), button)); }); document.querySelectorAll('.r-output').forEach(o => o.textContent = 'Ready.');
+            } catch (err) { status.classList.add('error'); statusText.textContent = 'R could not start: ' + (err?.message || String(err)) + '. Serve this page via GitHub Pages or a local web server and check your internet connection.'; console.error(err); }
+        } init();
+    </script>
+</body>
+
+</html>
