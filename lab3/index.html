@@ -708,7 +708,8 @@
                     mathematical model can describe a relationship using an equation. But
                     first, we can look for relationships visually.
                 </p>
-                <div class="viz"><svg viewBox="0 0 720 320" role="img"
+                <div class="viz">
+                    <svg viewBox="0 0 720 320" role="img"
                         aria-label="Illustrative scatterplot of two variables with optional fitted line">
                         <g stroke="#bdcde4" stroke-width="1">
                             <path d="M75 50V267H667" fill="none" stroke="#54637c" stroke-width="2" />
@@ -729,7 +730,7 @@
                             <circle cx="570" cy="116" r="8" />
                             <circle cx="614" cy="74" r="8" />
                         </g>
-                        <path id="model-line" d="M99 244L640 62" stroke="#cf2f7b" stroke-width="7"
+                        <path id="model-line" d="M99 244.73L640 77.58" stroke="#cf2f7b" stroke-width="7"
                             stroke-linecap="round" fill="none" visibility="hidden" /><text x="359" y="308"
                             text-anchor="middle" fill="#384861" font-size="19">Variable X</text><text x="24" y="162"
                             text-anchor="middle" transform="rotate(-90 24 162)" fill="#384861" font-size="19">Variable
@@ -818,7 +819,6 @@
                 <div class="phase try">Try</div>
                 <p>Classify these columns from our scooter dataset: <code>provider_name</code>, <code>trips</code>,
                     <code>avg_distance</code>, <code>day_of_week</code>. Is each categorical, quantitative, or ordinal?
-                    Explain one of your choices.
                 </p><label class="answer-label" for="variable-answer">Your
                     classifications and explanation</label><textarea class="student-answer" id="variable-answer"
                     data-question="Classify provider_name, trips, avg_distance, and day_of_week. Explain one choice."
@@ -867,7 +867,7 @@
                     <div class="r-cell-head"><span class="r-cell-label">Watch: trips by provider</span>
                         <button class="r-run" disabled type="button">Run</button>
                     </div>
-                    <textarea class="r-editor" spellcheck="false">provider_trips <- average_by(clean_scooters, provider_name, trips)
+                    <textarea class="r-editor" spellcheck="false">provider_trips <- average_by(clean_scooters, x = provider_name, y = trips)
 bar_graph(provider_trips, x = provider_name, y = trips)</textarea>
                     <div class="r-output-wrap">
                         <div class="r-output-label">Output</div>
@@ -896,18 +896,16 @@ bar_graph(provider_trips, x = provider_name, y = trips)</textarea>
                         <div class="r-plots"></div>
                     </div>
                 </div>
-                <div class="phase check">Check</div>
-                <p>Does each bar represent a provider? Does its height show an average? Can you read the labels?</p>
-                <div class="callout"><strong>Optional extension — clustered bars:</strong> You can put two groups of
+<!--                <div class="callout"><strong>Optional extension — clustered bars:</strong> You can put two groups of
                     bars side by side to compare a <em>second</em> categorical variable (such as weekday vs. weekend).
                     We won't code that today; the key idea is that color or position can show group membership.</div>
-            </div>
+            </div> -->
         </section>
         <section id="scatters">
             <div class="section-marker">
                 <div class="part">Part 3</div>
                 <h2>Scatterplots: look for relationships</h2>
-                <p>Now return to the kind of graph we saw at the start of lab.</p>
+                <p> Let's return to the kind of graph we saw at the start of lab.</p>
             </div>
             <div class="card">
                 <div class="graph-example">
@@ -931,19 +929,19 @@ bar_graph(provider_trips, x = provider_name, y = trips)</textarea>
                     </div>
 
                     <script>
-                        const modelButton = document.getElementById("model-toggle");
+                        const scatterModelButton = document.getElementById("model-toggle");
                         const scatterImage = document.getElementById("spurious-scatterplot");
 
                         let showingModel = false;
 
-                        modelButton.addEventListener("click", () => {
+                        scatterModelButton.addEventListener("click", () => {
                             showingModel = !showingModel;
 
                             scatterImage.src = showingModel
                                 ? "assets/mrbeast-scatter-model.png"
                                 : "assets/mrbeast-scatter.png";
 
-                            modelButton.textContent = showingModel
+                            scatterModelButton.textContent = showingModel
                                 ? "Hide Model"
                                 : "Show Model";
                         });
@@ -951,8 +949,8 @@ bar_graph(provider_trips, x = provider_name, y = trips)</textarea>
                 </div>
 
                 <p>
-                    Each dot represents one observation with two quantitative values. Look for 
-                    upward, downward, or no obvious pattern. As you can see by this example, 
+                    In a scatterplot, each dot represents one observation with two quantitative values. Look for 
+                    upward (positive), downward (negative), or no obvious pattern. As you can see by this example, 
                     an association isn't automatically a cause.
                 </p>
                 <div class="phase watch">Watch</div>
@@ -975,7 +973,10 @@ bar_graph(provider_trips, x = provider_name, y = trips)</textarea>
                 </div>
                 <p>
                     Dots represent the observations; adding a line is one way to summarize 
-                    their overall relationship.
+                    their overall relationship. Below, we will add a linear model line of 
+                    best fit to the scatterplot. This line helps us visualize the overall 
+                    trend in the data. You don't need to memorize the functions below. 
+                    We're using them to illustrate the relationship between observations and a simple model.
                 </p>
                 <div class="r-cell" data-submit="false">
                     <div class="r-cell-head"><span class="r-cell-label">Watch: add an example linear model</span><button
@@ -1031,16 +1032,23 @@ abline(lm(avg_duration ~ avg_distance, data = clean_scooters), col = "magenta", 
             <div class="section-marker">
                 <div class="part">Part 4</div>
                 <h2>Line graphs: follow change over time</h2>
-                <p>Some relationships are about a progression (especially dates).</p>
+                <p>
+                    Some relationships are about a progression (especially dates). 
+                    A line graph connects observations in meaningful order.
+                    It's especially useful for showing changes over time.
+                </p>
             </div>
             <div class="card">
                 <div class="graph-example">
-                    <h3>Lne graph example</h3>
+                    <h3>Line graph example</h3>
                     <p class="small">
-                        This line graph shows...
+                        This line graph shows the genres of songs in the Billboard Hot 100 over time. 
+                        Each line represents a different genre, and the y-axis shows the number of 
+                        songs in that genre on the chart each week. The continuity of the lines makes 
+                        it easy to see how the popularity of different genres has changed over time.
                     </p><img
-                        class="sample-img" data-placeholder-image src="assets/welcome_line_graph.png"
-                        alt="Instructor-supplied line graph" onerror="this.removeAttribute('src')">
+                        class="sample-img" data-placeholder-image src="assets/billboard_line_graph.png"
+                        alt="Billboard Hot 100 line graph" onerror="this.removeAttribute('src')">
                     <div class="placeholder">
                         <div><strong>Line graph example</strong>
                             <p>Change over time (or another meaningful continuum)</p>
@@ -1048,17 +1056,16 @@ abline(lm(avg_duration ~ avg_distance, data = clean_scooters), col = "magenta", 
                         </div>
                     </div>
                 </div>
-                <p>
-                    A line graph connects observations in meaningful order. 
-                    It's especially useful for showing changes over time.
-                </p>
+                <p> <br> </p>
+                
                 <div class="phase watch">Watch</div>
                 <p>
                     How did the number of scooter trips change over time?
                     Before making a line graph, we need to think about what unit of 
                     time we want to use (e.g., days, weeks, months) for the x-axis.
                     If we include every day, the x-axis will be quite crowded and long!
-                    Instead, let's aggregate the data by month to get a clearer view of the trend.
+                    <strong>Instead, let's aggregate the data by month to get a clearer 
+                        view of the trend.</strong>
                 </p>
                 <p>
                     We also need to think about the particulars of our dataset, such as multiple 
@@ -1100,7 +1107,7 @@ line_graph(monthly_trips, x = year_month, y = trips, group = provider_name)</tex
 
     <p>
         When you see something surprising in a graph, don't automatically
-        assume it's real—or that it's an error. <strong>Investigate!</strong>
+        assume it's real, or that it's an error. Investigate!
         Unusual values can reveal data problems, but they can also tell
         us something interesting about the real world.
     </p>
@@ -1122,7 +1129,7 @@ line_graph(monthly_trips, x = year_month, y = trips, group = provider_name)</tex
     </p>
 </div>
 
-                
+               <p><br></p> 
                 <div class="phase try">Try</div>
                 <p>
                     In the graph above, we looked at the number of trips by provider over time.
