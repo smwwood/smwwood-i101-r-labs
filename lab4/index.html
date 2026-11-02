@@ -850,7 +850,7 @@
       <img class="hero-photo" src="assets/scooter_pile.png" alt="Comically enormous pile of scooters blocking the entrance to a house">
       <p>
         <strong>A city full of scooters.</strong> 
-        In Lab 2, we explored how scooters were used. What happens when we
+        In Labs 2 & 3, we explored how scooters were used. What happens when we
         look at the perspective of people living alongside them?
       </p>
       <p class="small-note">
@@ -900,14 +900,16 @@
               <p>Quantitative</p>
             </div>
           </div>
-          <p>Now change the outcome: what if we wanted to understand <strong>complaints</strong> rather than trips?</p>
+          <p>Now change the outcome: what if we wanted to understand complaints rather than trips?</p>
         </div>
         <div class="deck-slide">
           <div class="deck-kicker">04 / VISUALIZE</div>
           <h3>Complaints = Day of week + Error</h3>
-          <p>We could use a statistical model to evaluate a relationship, or start by <strong>seeing</strong> it with a
+          <p>We could use a statistical model to evaluate a relationship, or start by seeing it with a
             graph.</p>
-          <div class="formula">Categorical day + complaint count → Bar graph</div>
+          <div class="formula">Day of Week: Categorical<br>Number of Complaints: Quantitative</div>
+    
+          <div class="formula">Graph: Bar graph</div>
           <p>To make the bars, first count how many complaints fall on each weekday.</p>
         </div>
       </div>
@@ -927,20 +929,18 @@
           <button class="r-run" type="button" disabled>Run</button>
         </div><textarea class="r-editor"
           spellcheck="false"># First, let's see what variables (columns) we have in our data
-print(names(complaints))
 
 # Count the number of complaints for each day of the week.
-# We have a function called count_by that works
-# like total_by and average_by.
-# count_by(dataset, x = x-axis variable, y = y-axis variable)
+# We have a function called count_by that counts the number 
+# of rows for each value of a variable. It works similarly
+# to total_by and average_by, but instead of summing or averaging a numeric variable,
+# it counts the number of rows for each value of a categorical variable.
+# count_by(dataset, x = x-axis variable)
 # Save the result as complaints_by_day.
-complaints_by_day <- count_by(complaints, x = request_day_of_week, y = service_request_id)
 
 # View the new summary table with head().
-head(complaints_by_day)
 
 # Make a bar graph: weekday on x, complaint count on y.
-bar_graph(complaints_by_day, x = request_day_of_week, y = service_request_id)
 
 </textarea>
         <div class="r-output-wrap">
@@ -999,7 +999,7 @@ bar_graph(complaints_by_day, x = request_day_of_week, y = service_request_id)
         items to select. Run the sample several times, without changing the code.
       </p>
       
-      <div class="r-cell" data-submit="true">
+      <div class="r-cell" data-submit="false">
         <div class="r-cell-head">
           <span class="r-cell-label">Try: draw a new random sample</span>
           <button class="r-run" type="button" disabled>Run</button>
@@ -1039,21 +1039,31 @@ bar_graph(complaints_by_day, x = request_day_of_week, y = service_request_id)
           </p>
         </div>
       </div>
-      <div class="steps"><span>1 · Choose a word</span><span>2 · Search</span><span>3 · Save logical</span><span>4 ·
-          Count matches</span></div>
+      <div class="steps">
+        <span>1 · Choose a word</span>
+        <span>2 · Search</span>
+        <span>3 · Save logical</span>
+        <span>4 · Count matches</span>
+      </div>
+          </section>
       <div class="phase watch">Watch</div>
 
       <p>
         We will use a new function called <code>grepl()</code> to search for specific words 
         in the complaint descriptions. <code>grepl()</code> is a funny name because it's actually 
-        an acronym for "Global Regular Expression Print List". Global means it searches the entire 
-        string, Regular Expression means it can match patterns, Print List means it returns a 
-        list of TRUE/FALSE values (based on whether it found the target pattern).
+        an acronym for "<strong>G</strong>lobal <strong>R</strong>egular 
+        <strong>E</strong>xpression <strong>P</strong>rint <strong>L</strong>ist". 
+        Global means it searches the entire string, Regular Expression means it can match patterns, 
+        Print List means it returns a list of TRUE/FALSE values (based on whether it found the target pattern).
       </p>
       <p> 
-        The way we use <code>grepl()</code> is by providing it with the word we want to search for,
-        the column of text to search in, and optionally setting <code>ignore.case=TRUE</code> 
-        to make the search case-insensitive (e.g., "i love scooters" could match "I Love Scooters").
+        The way we use <code>grepl()</code> is by providing it with the word we want to search for
+        and the column of text to search in.
+      </p>
+      <p class="small note">
+        Note: By default, the search is case-sensitive. This means that searching for 
+        "I Love Scooters" would not find "i love scooters". If you want to make the search case-insensitive, 
+        use the <code>ignore.case=TRUE</code> argument.
       </p>
       <div class="r-cell" data-submit="false">
         <div class="r-cell-head">
@@ -1061,10 +1071,10 @@ bar_graph(complaints_by_day, x = request_day_of_week, y = service_request_id)
           <button class="r-run" type="button" disabled>Run</button>
         </div>
         <textarea class="r-editor" spellcheck="false"># Step 1: Does each description mention "sidewalk"?
-complaint_data$sidewalk <- grepl("sidewalk" , complaint_data$description, ignore.case=TRUE )
+complaint_data$sidewalk <- grepl("sidewalk" , complaint_data$description)
 
 # Step 2: Make another variable, this time for "block".
-complaint_data$block <- grepl("block" , complaint_data$description, ignore.case=TRUE )
+complaint_data$block <- grepl("block" , complaint_data$description)
 
 # Step 3: Check the new variables beside the original text.
 print(head(complaint_data))</textarea>
@@ -1107,7 +1117,7 @@ print(head(complaint_data))</textarea>
           alt="A scooter whizzing by a pedestrian">
         <div>
           <p>
-            Now that you have created your logical variables, we can use our columns
+            Now that you've created your logical variables, we can use our columns
             to figure out how often complaints mention each keyword.
             You might recall from R Lab 1 that R treats logical values as 1 and 0 when summing them.
             You can use <code>sum()</code> to count how many complaints match each keyword!
@@ -1133,7 +1143,7 @@ print(sum(complaint_data$block))</textarea>
       <div class="phase try">Try</div>
       <div class="r-cell" data-submit="true">
         <div class="r-cell-head"><span class="r-cell-label">Try: count and compare your two search terms</span><button
-            class="r-run" type="button" disabled>Run</button></div><textarea class="r-editor" spellcheck="false"># Count mentions_park with sum().
+            class="r-run" type="button" disabled>Run</button></div><textarea class="r-editor" spellcheck="false"># Count how many complaints mention "park" with sum().
 
 
 # Count my_keyword with sum().
@@ -1151,7 +1161,7 @@ print(sum(complaint_data$block))</textarea>
       </label>
       <textarea id="answer3" class="student-answer" data-question="Which of your search terms appeared most often? What might a keyword search miss or mistakenly include?"
         placeholder="Write your response here…"></textarea>
-    </section>
+
 
     <div class="section-marker" id="join">
       <div class="part">Part 4</div>
@@ -1171,12 +1181,17 @@ print(sum(complaint_data$block))</textarea>
         </div>
       </div>
       <p>
-        We cannot simply join those original rows: they don't represent the same thing. 
+        We cannot simply join those original datasets: the rows don't represent the same thing. 
         The rows in our original scooter activity dataset represent a combination of provider and date. 
         The rows in our complaints data represent individual reports. 
-        In order to join them together, we need to make versions of each table that have the same row unit.
-        We will use the <code>year_month</code> column as the common row unit. We will first summarize each table
-        to <strong>one row per year-month</strong>, then join on the shared <code>year_month</code> value.</p>
+        <br><br>In order to join them together, we need to make versions of each table that have the same row unit.
+        We will use the <code>year_month</code> column as the common row unit. The <code>year_month</code>
+        column tells the year and month (e.g., "2024-04" for April 2024) for each row. 
+        <br><br>We will first summarize each table to <strong>one row per year-month</strong>, then join on 
+        the shared <code>year_month</code> value.
+        <br><br>We'll be introducing a new function called <code>join_by()</code> to combine the two tables. 
+        join_by() takes three arguments: the first table, the second table, and the column to join on.
+      </p>
       <table class="sample-table">
         <tr>
           <th>year_month</th>
@@ -1197,16 +1212,19 @@ print(sum(complaint_data$block))</textarea>
       <p></p>
       
       <div class="phase watch">Watch</div>
-      <p>Your TA demonstrates totaling trips, counting complaints, joining the monthly summaries, and graphing the
-        result.</p>
       <div class="r-cell" data-submit="true">
         <div class="r-cell-head"><span class="r-cell-label">Watch: monthly trips versus complaints</span><button
-            class="r-run" type="button" disabled>Run</button></div><textarea class="r-editor" spellcheck="false">monthly_trips <- total_by(clean_scooters, year_month, trips)
+            class="r-run" type="button" disabled>Run</button></div><textarea class="r-editor" spellcheck="false"># Summarize the scooter activity dataset to one row per month.
+monthly_trips <- total_by(clean_scooters, year_month, trips)
+
+# Summarize the complaints dataset to one row per month.
 monthly_complaints <- count_by(complaints, year_month)
 
-combined_trips <- join_by(monthly_trips, monthly_complaints, year_month)
+# Join the two monthly tables on year_month.
+combined_trips <- join_by(monthly_trips, monthly_complaints, by = year_month)
 head(combined_trips)
 
+# Make a scatterplot of trips (x-axis) versus complaints (y-axis).
 scatter_plot(combined_trips, x = trips, y = count)</textarea>
         <div class="r-output-wrap">
           <div class="r-output-label">R output</div>

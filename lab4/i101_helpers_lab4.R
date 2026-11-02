@@ -18,14 +18,14 @@
 }
 
 
-join_by <- function(data1, data2, x) {
-  xn <- .column_name(substitute(x), data1)
+join_by <- function(data1, data2, by) {
+  xn <- .column_name(substitute(by), data1)
   
   if (!xn %in% names(data2)) {
     stop(paste("Column not found in second dataset:", xn))
   }
   
-  result <- merge(data1, data2, by = xn, all.x = TRUE)
+  result <- merge(data1, data2, by = xn, all.by = TRUE)
   
   result
 }
