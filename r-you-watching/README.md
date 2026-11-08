@@ -15,7 +15,7 @@ Open http://localhost:4173. Select a show or the bundled **The Office (US)** exa
 
 Upload the contents of `dist/` to any HTTPS static host. Serve `.js` and `.mjs` with JavaScript MIME types, `.json` as JSON, and the R helper as text. There is no build step or server API. WebR uses the PostMessage channel, so COOP/COEP headers are not required. Allow `https://webr.r-wasm.org` for WebR downloads and `https://api.tvmaze.com` for show searches. Restrictive Content Security Policies must also allow WebAssembly and WebR's workers; test the actual host before class.
 
-The generated Sites deployment starts owner-private for review. For account-free student access, use a public static host or explicitly change the Sites audience. The app itself has no sign-in mechanism.
+This project is maintained in GitHub and is not configured for Sites deployment. Do not publish it to Sites. The app itself has no sign-in mechanism; hosting elsewhere is a separate choice.
 
 ## Project organization
 
