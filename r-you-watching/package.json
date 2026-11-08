@@ -1,0 +1,1 @@
+{"name":"r-you-watching","private":true,"type":"module","scripts":{"test":"playwright test","serve":"python3 -m http.server 4173 --directory dist"},"devDependencies":{"@playwright/test":"^1.56.0","linkedom":"^0.18.15"},"dependencies":{"fflate":"^0.8.2","jspdf":"^4.2.1"}}

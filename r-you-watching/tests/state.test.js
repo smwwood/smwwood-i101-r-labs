@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import {newState,restoreState,initializeCustom,recordResult,finalVersion} from '../dist/state.js';
+import {missingFields} from '../dist/export.js';
+import {investigations} from '../dist/content.js';
+const state=newState(),item=state.investigations[0];
+assert.equal(state.step,0);assert.equal(initializeCustom(item),false);
+recordResult(item,'basic','hist(x)',{graph:'basic-image',output:'ok'});
+assert.equal(initializeCustom(item),true);assert.equal(item.custom.code,'hist(x)');
+item.custom.code='hist(x, col="red")';recordResult(item,'custom',item.custom.code,{graph:'red-image',output:'ok'});
+recordResult(item,'basic','hist(y)',{graph:'new-basic',output:'ok'});assert.equal(initializeCustom(item),false);assert.equal(item.custom.code,'hist(x, col="red")');assert.equal(item.custom.graph,'red-image');
+recordResult(item,'custom','stop("oops")',{graph:'bad',failed:true,output:'error'});assert.equal(item.custom.graph,'red-image');assert.equal(item.basic.graph,'new-basic');assert.equal(finalVersion(item).graph,'red-image');
+recordResult(item,'custom','1+1',{graph:null,output:'2'});assert.equal(item.custom.graph,'red-image');
+const migrated=restoreState({version:1,name:'A',show:{name:'Office',id:526},rows:[{}],workspace:new Uint8Array([1,2]),codes:['hist(x)','line_graph(d,x,y)','bar_graph(d,x,y)'],graphs:['a','b','c'],graphCode:['hist(x)','line_graph(d,x,y)','bar_graph(d,x,y)'],answers:[['around 8','old shape','old skew','outlier'],['stable','episode 2'],['Michael','themes']]});
+assert.equal(migrated.version,2);assert.equal(migrated.investigations[0].basic.graph,'a');assert.equal(migrated.investigations[0].custom.graph,null);assert.equal(migrated.investigations[0].answers.shape,undefined);assert.equal(migrated.legacyAnswers[0][2],'old skew');assert.deepEqual(migrated.workspace,new Uint8Array([1,2]));
+state.name='Student';state.show={name:'Office'};state.investigations.forEach((it,i)=>{it.basic.graph='basic';it.basic.graphCode='plot(x)';for(const q of investigations[i].questions){it.answers[q.id]=q.options?.[0]||'response';if(q.reason)it.answers[q.id+'Reason']='because';}});assert.deepEqual(missingFields(state),[]);delete state.investigations[0].answers.predictionReason;assert.match(missingFields(state).join(' '),/reasoning/);
+console.log('State migration, six-graph isolation, copying, fallback and required-response tests passed');
+
+const untouched=newState();
+untouched.investigations[0].basic.code='# Create a histogram using hist().\n# Use the rating column from rated_episodes.\n';
+untouched.investigations[1].basic.code='my_student_command()';
+const refreshed=restoreState(untouched);
+assert.match(refreshed.investigations[0].basic.code,/names\(\)/);
+assert.equal(refreshed.investigations[1].basic.code,'my_student_command()');
+console.log('Untouched starter refresh preserves student commands');

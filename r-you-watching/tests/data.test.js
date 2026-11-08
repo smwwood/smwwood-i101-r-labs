@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {DOMParser} from 'linkedom';
+import {cleanEpisodes,quality,csv,rData,api} from '../dist/data.js';
+globalThis.DOMParser=class { parseFromString(text,type){return new DOMParser().parseFromString(text || "<html><body></body></html>",type);} };
+const base={season:1,number:1,airdate:'2020-01-01',rating:{average:8},summary:'<html><body><p>Hello <b>world</b></p><script>bad()</script></body></html>'};
+const rows=cleanEpisodes([{...base,season:2},{...base,rating:{average:null},summary:null},{...base,number:2,airdate:'2099-01-01'},{...base,season:0},{...base,type:'significant_special'}]);
+assert.equal(rows.length,2);assert.equal(rows[0].summary,'');assert.equal(rows[1].summary,'Hello world');assert.equal(rows[1].episode_order,2);assert.equal(rows[1].episode_label,'S02E01');assert.equal(quality(rows).ratings,1);assert.match(rData(rows),/NA_real_/);assert.match(csv([{...rows[0],name:'=1+1'}]),/'=1\+1/);
+const originalFetch=globalThis.fetch;
+globalThis.fetch=async()=>{throw Error('offline')};await assert.rejects(api('/test'),/could not be reached/);
+globalThis.fetch=async()=>({status:429});await assert.rejects(api('/test'),/rate limit/);
+globalThis.fetch=originalFetch;
+console.log('Data cleaning, missing data, future episodes, specials, CSV and API failures passed');
